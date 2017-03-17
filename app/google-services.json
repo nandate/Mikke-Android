@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "76572107347",
+    "firebase_url": "https://mikke-d5d0a.firebaseio.com",
+    "project_id": "mikke-d5d0a",
+    "storage_bucket": "mikke-d5d0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76572107347:android:7f86a0b2ce62c625",
+        "android_client_info": {
+          "package_name": "com.service_mikke.mikke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76572107347-brc6uhae5dikujhqdfd81cj52992fmqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM0k8kWnWG8qJ0du0wpo7-1vaTv6Vuxkg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
