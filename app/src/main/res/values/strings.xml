@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Mikke!</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">Email</string>
+    <string name="sign_up_button_label">Sign Up</string>
+    <string name="signup_error_message">Please make sure you enter an email address and
+    password!</string>
+    <string name="signup_error_title">Error!</string>
+    <string name="signup_success">Account successfully created! You can now Login.</string>
+    <string name="login_error_message">Please make sure you enter an email address and password!</string>
+    <string name="login_error_title">Error!</string>
+    <string name="login_button_label">Login</string>
+    <string name="sign_up_text">Sign Up!</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="add_item">Add New Item</string>
+    <string name="action_logout">Logout</string>
+
+
+    <string name="title_activity_used_services">気になるサービスは？</string>
+    <string name="title_activity_genres">ジャンル選択</string>
+    <string name="select_genre_counter">Pick %1$d (or more!)</string>
+    <string name="select_genre_done">次へ</string>
+
 </resources>
