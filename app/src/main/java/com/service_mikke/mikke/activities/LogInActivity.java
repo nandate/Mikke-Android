@@ -16,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.service_mikke.mikke.R;
 
+import com.facebook.FacebookSdk;
+
 /**
  * Created by takuya on 3/17/17.
  */
