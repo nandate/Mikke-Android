@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/genres_toolbar"
+            android:id="@+id/used_service_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/gradation_primal"
@@ -22,16 +22,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_activity_genres"
+                android:text="@string/title_activity_used_services"
                 android:layout_gravity="center"
-                android:id="@+id/genres_toolbar_title"/>
+                android:id="@+id/used_service_toolbar_title"/>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
     <com.mindorks.placeholderview.SwipePlaceHolderView
-        android:id="@+id/genres_swipeView"
+        android:id="@+id/used_services_swipeView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">

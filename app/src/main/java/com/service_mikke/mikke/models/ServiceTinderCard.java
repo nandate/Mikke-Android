@@ -2,7 +2,6 @@ package com.service_mikke.mikke.models;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mindorks.placeholderview.SwipePlaceHolderView;
@@ -17,41 +16,42 @@ import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.mindorks.placeholderview.annotations.swipe.SwipeOutState;
 import com.service_mikke.mikke.R;
 
-
 /**
- * Created by takuya on 3/18/17.
+ * Created by takuya on 3/19/17.
  */
 
 
-@Layout(R.layout.genre_card_view)
-public class GenreTinderCard {
+@Layout(R.layout.service_card_view)
+public class ServiceTinderCard {
+    @View(R.id.service_name)
+    private TextView service_name_view;
 
-    @View(R.id.profileImageView)
-    private ImageView profileImageView;
+    @View(R.id.company_name)
+    private TextView company_name_view;
 
-    @View(R.id.nameAgeTxt)
-    private TextView nameAgeTxt;
+    @View(R.id.service_description)
+    private TextView service_description_view;
 
 
-    private Genre mGenre;
+    private Service mService;
     private Context mContext;
     private SwipePlaceHolderView mSwipeView;
 
-
-    public GenreTinderCard(Context context, Genre genre, SwipePlaceHolderView swipeView) {
+    public ServiceTinderCard(Context context,Service service,SwipePlaceHolderView swipeView){
         mContext = context;
-        mGenre = genre;
+        mService = service;
         mSwipeView = swipeView;
     }
 
+
     @Resolve
     private void onResolved(){
-        int identifier = mContext.getResources().getIdentifier(mGenre.getImage(),"drawable",mContext.getPackageName());
-        profileImageView.setImageResource(identifier);
-        nameAgeTxt.setText(mGenre.getName());
+        service_name_view.setText(mService.getName());
+        company_name_view.setText(mService.getTitle());
+        service_description_view.setText(mService.getDescription());
     }
 
-    @Click(R.id.profileImageView)
+    @Click(R.id.service_name)
     private void onClick(){
         Log.d("EVENT", "profileImageView click");
     }
@@ -60,7 +60,7 @@ public class GenreTinderCard {
     private void onSwipedOut(){
         Log.d("EVENT", "onSwipedOut");
         User user = User.getInstance();
-        user.addSelectedGenres(mGenre);
+        user.addUsedService(mService);
         System.out.println(user.getSelected_genres());
     }
 
