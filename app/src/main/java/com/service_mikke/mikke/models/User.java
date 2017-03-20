@@ -27,7 +27,9 @@ public class User {
     }
 
     public void addSelectedGenres(Genre genre){
-        selected_genres.add(genre);
+        if(!selected_genres.contains(genre)){
+            selected_genres.add(genre);
+        }
     }
 
     public List<Service> getUsed_services(){
@@ -36,7 +38,9 @@ public class User {
     }
 
     public void addUsedService(Service service){
-        used_services.add(service);
+        if(!used_services.contains(service)){
+            used_services.add(service);
+        }
     }
 
 }
