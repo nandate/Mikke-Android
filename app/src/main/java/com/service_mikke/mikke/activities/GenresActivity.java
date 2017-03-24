@@ -94,7 +94,6 @@ public class GenresActivity extends AppCompatActivity{
                     }
                 }
 
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 

@@ -5,9 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +31,13 @@ import com.service_mikke.mikke.models.Service;
 import com.service_mikke.mikke.models.ServiceTinderCard;
 import com.service_mikke.mikke.models.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by takuya on 3/18/17.
@@ -71,7 +82,7 @@ public class UsedServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addTagPoint(User.getInstance().getUsed_services(),mDatabase,mUserId);
-
+                startRecommend(mUserId);
                 Intent intent = new Intent(view.getContext(),MainActivity.class);
                 startActivity(intent);
             }
@@ -164,6 +175,34 @@ public class UsedServicesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void startRecommend(final String mUserId){
+        String url = "https://mikke-rec.herokuapp.com/";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){
+                        Log.d("Response",response);
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        Log.d("Error Response",error.toString());
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("UserID",mUserId);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 
