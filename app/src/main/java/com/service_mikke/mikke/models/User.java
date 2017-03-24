@@ -42,5 +42,4 @@ public class User {
             used_services.add(service);
         }
     }
-
 }
