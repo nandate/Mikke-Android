@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 
 import com.service_mikke.mikke.R;
+import com.service_mikke.mikke.models.Message;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by takuya on 3/27/17.
@@ -18,18 +20,20 @@ import java.util.ArrayList;
 
 public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAdapter.ViewHolder>{
 
-    private ArrayList<String> mDataset;
+    private List<Message> mDataset;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView mTextView;
+        public TextView title;
+        public TextView content;
         public ViewHolder(View v){
             super(v);
-            mTextView = (TextView)v.findViewById(R.id.notice_text);
+            title = (TextView)v.findViewById(R.id.notice_title);
+            content = (TextView)v.findViewById(R.id.notice_content);
         }
     }
 
-    public NoticeRecyclerAdapter(ArrayList<String> myDataset){
+    public NoticeRecyclerAdapter(List<Message> myDataset){
         mDataset = myDataset;
     }
 
@@ -42,7 +46,8 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder,int position){
-        holder.mTextView.setText(mDataset.get(position));
+        holder.title.setText(mDataset.get(position).getTitle());
+        holder.content.setText(mDataset.get(position).getContent());
     }
 
     @Override

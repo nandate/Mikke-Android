@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.NoticeRecyclerAdapter;
+import com.service_mikke.mikke.models.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,7 @@ public class NoticeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.notice_fragment,container,false);
 
-        ArrayList<String> mDataset = new ArrayList<String>();
-        mDataset.add("aaa");
-        mDataset.add("bbb");
-        mDataset.add("ccc");
+        List<Message> mDataset = initMessage();
 
         mRecyclerView =(RecyclerView)v.findViewById(R.id.notice_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -42,5 +40,20 @@ public class NoticeFragment extends Fragment{
         mRecyclerView.setAdapter(mAdapter);
 
         return v;
+    }
+
+
+    private List<Message> initMessage(){
+        List<Message> messages = new ArrayList<>();
+        messages.add(new Message("aaa","test test"));
+        messages.add(new Message("aaa","test test"));
+        messages.add(new Message("aaa","test test"));
+        messages.add(new Message("aaa","test test"));
+        messages.add(new Message("aaa","test test"));
+        messages.add(new Message("aaa","test test"));
+        messages.add(new Message("aaa","test test"));
+
+        return messages;
+
     }
 }
