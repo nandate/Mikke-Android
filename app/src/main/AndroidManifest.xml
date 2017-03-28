@@ -21,8 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.StartActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activities.StartActivity"></activity>
 
         <activity
             android:name=".activities.GenresActivity"
