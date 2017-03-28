@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/script2_background"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@drawable/script2_back"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <Button
+            android:id="@+id/script2_next_button"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/gradation_primal"
+            android:text="次へ"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:layout_marginBottom="38dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/send_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/send"
+            android:layout_marginTop="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/script2_description"/>
+
+
+        <TextView
+            android:text="毎朝7時にあなたの為だけに\n3サービスをご紹介します。\nこんなサービスがあったのか\nを毎日感じられます！"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/script2_description"
+            android:textStyle="normal|bold"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textAlignment="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</LinearLayout>
