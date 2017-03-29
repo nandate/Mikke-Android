@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +35,9 @@ public class RecommendFragment extends Fragment{
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
     private String mUserId;
+
+    private Button like_button;
+    private Button dislike_button;
 
 
     @Override
@@ -75,6 +79,22 @@ public class RecommendFragment extends Fragment{
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        like_button = (Button)v.findViewById(R.id.like_button);
+        like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSwipeView.doSwipe(false);
+            }
+        });
+
+        dislike_button = (Button)v.findViewById(R.id.dislike_button);
+        dislike_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                mSwipeView.doSwipe(true);
+            }
+        });
         return v;
     }
 
