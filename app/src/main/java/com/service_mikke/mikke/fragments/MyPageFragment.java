@@ -34,7 +34,6 @@ public class MyPageFragment extends Fragment{
     private String mUserId;
 
     private RecyclerView favorite_recycler_view;
-    private List<Service> favorites = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -48,7 +47,7 @@ public class MyPageFragment extends Fragment{
 
         favorite_recycler_view = (RecyclerView)v.findViewById(R.id.favorite_recyclerView);
 
-        FavoriteRecyclerAdapter mAdapter = new FavoriteRecyclerAdapter(mDatabase.child("users").child(mUserId).child("recommends"));
+        FavoriteRecyclerAdapter mAdapter = new FavoriteRecyclerAdapter(mDatabase.child("users").child(mUserId).child("fav"));
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
 

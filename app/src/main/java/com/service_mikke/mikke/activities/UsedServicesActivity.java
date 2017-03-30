@@ -125,7 +125,7 @@ public class UsedServicesActivity extends AppCompatActivity {
                         }
                     }
                 }
-                
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 

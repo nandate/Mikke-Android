@@ -1,9 +1,13 @@
 package com.service_mikke.mikke.models;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -11,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
@@ -36,6 +42,10 @@ import java.util.Map;
 public class ServiceTinderCard {
 
 
+    @View(R.id.service_logo)
+    private ImageView service_logo_view;
+
+
     @View(R.id.service_name)
     private TextView service_name_view;
 
@@ -50,6 +60,9 @@ public class ServiceTinderCard {
     private Context mContext;
     private SwipePlaceHolderView mSwipeView;
 
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageReference = storage.getReferenceFromUrl("gs://mikke-d5d0a.appspot.com/");
+
     public ServiceTinderCard(Context context,Service service,SwipePlaceHolderView swipeView){
         mContext = context;
         mService = service;
@@ -59,6 +72,14 @@ public class ServiceTinderCard {
 
     @Resolve
     private void onResolved(){
+        StorageReference logo_ref = storageReference.child(mService.getName()+"_logo.png");
+        logo_ref.getBytes(1024*1024).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap logo = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                service_logo_view.setImageBitmap(logo);
+            }
+        });
         service_name_view.setText(mService.getName());
         company_name_view.setText(mService.getTitle());
         service_description_view.setText(mService.getDescription());
@@ -73,11 +94,6 @@ public class ServiceTinderCard {
     private void onSwipedOut(){
         Log.d("EVENT", "onSwipedOut");
         addTagPoint(mService);
-
-
-        /*User user = User.getInstance();
-        user.addUsedService(mService);
-        System.out.println(user.getSelected_genres());*/
     }
 
     @SwipeCancelState
