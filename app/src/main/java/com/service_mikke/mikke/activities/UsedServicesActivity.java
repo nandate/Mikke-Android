@@ -55,7 +55,6 @@ public class UsedServicesActivity extends AppCompatActivity {
     private String mUserId;
 
     private List<Service> services = new ArrayList<>();
-    private HashMap<String,Integer> tags = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -81,7 +80,6 @@ public class UsedServicesActivity extends AppCompatActivity {
         next_view_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addTagPoint(User.getInstance().getUsed_services(),mDatabase,mUserId);
                 startRecommend(mUserId);
                 Intent intent = new Intent(view.getContext(),MainActivity.class);
                 startActivity(intent);
@@ -127,9 +125,7 @@ public class UsedServicesActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
-
+                
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
@@ -143,39 +139,6 @@ public class UsedServicesActivity extends AppCompatActivity {
     }
 
 
-    private void addTagPoint(final List<Service> services, final DatabaseReference mDatabase, final String UserId)
-    {
-        final ArrayList<String> tag_names = new ArrayList<String>();
-        for(int i = 0;i < services.size();i++) {
-            Service service = services.get(i);
-            tag_names.addAll(service.getTags());
-        }
-
-        mDatabase.child("tags").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot tagsSnapshot:dataSnapshot.getChildren()){
-                    tags.put(tagsSnapshot.getValue(String.class),0);
-                }
-                for(int i=0;i<tag_names.size();i++){
-                    String name =tag_names.get(i);
-                    if(tags.containsKey(name)){
-                        Integer point = tags.get(name);
-                        tags.put(name,point+1);
-                    }else{
-                        tags.put(name,1);
-                    }
-                }
-                mDatabase.child("users").child(UserId).child("tags_point").setValue(tags);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
 
     private void startRecommend(final String mUserId){

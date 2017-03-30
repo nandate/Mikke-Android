@@ -101,7 +101,7 @@ public class ServiceTinderCard {
     }
 
 
-    private void addTagPoint(Service mService){
+    private void addTagPoint(final Service mService){
 
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -121,9 +121,10 @@ public class ServiceTinderCard {
                         Map<String,Object> map = new HashMap<String, Object>();
                         map.put(tag_name,point);
                         mDatabase.child("users").child(mUserId).child("tags_point").updateChildren(map);
-                        
                     }
                 }
+                mDatabase.child("users").child(mUserId).child("fav").push().setValue(mService);
+                mDatabase.child("users").child(mUserId).child("used_services").push().setValue(mService);
 
             }
 
