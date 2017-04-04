@@ -81,8 +81,6 @@ public class UsedServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startRecommend(mUserId);
-                Intent intent = new Intent(view.getContext(),MainActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -148,6 +146,8 @@ public class UsedServicesActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response){
                         Log.d("Response",response);
+                        Intent intent = new Intent(UsedServicesActivity.this,MainActivity.class);
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener(){

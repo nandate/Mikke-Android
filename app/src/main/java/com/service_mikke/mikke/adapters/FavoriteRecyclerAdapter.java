@@ -1,5 +1,7 @@
 package com.service_mikke.mikke.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.models.Service;
 
@@ -24,6 +29,9 @@ import java.util.List;
 public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecyclerAdapter.ViewHolder>{
 
     private List<Service> mDataset = new ArrayList<>();
+
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageReference = storage.getReferenceFromUrl("gs://mikke-d5d0a.appspot.com/");
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView name;
@@ -60,8 +68,17 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder,int position){
+    public void onBindViewHolder(final ViewHolder holder, int position){
         holder.name.setText(mDataset.get(position).getName());
+        StorageReference logo_ref = storageReference.child(mDataset.get(position).getName()+"_logo.png");
+        logo_ref.getBytes(1024*1024).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap logo = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                holder.logo.setImageBitmap(logo);
+            }
+        });
+
     }
 
     @Override

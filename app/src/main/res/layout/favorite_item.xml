@@ -10,8 +10,7 @@
         android:id="@+id/fav_logo"
         android:layout_width="160dp"
         android:layout_height="100dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/book"
+        android:scaleType="fitCenter"
         android:layout_gravity="center"/>
 
     <TextView
