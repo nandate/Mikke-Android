@@ -56,9 +56,9 @@ public class RecommendFragment extends Fragment{
 
 
         mSwipeView.getBuilder()
-                .setDisplayViewCount(3)
+                .setDisplayViewCount(1)
                 .setSwipeDecor(new SwipeDecor()
-                        .setPaddingTop(20)
+                        .setPaddingTop(10)
                         .setRelativeScale(0.01f));
 
         try{

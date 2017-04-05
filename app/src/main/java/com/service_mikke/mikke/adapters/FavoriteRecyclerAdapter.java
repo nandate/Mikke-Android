@@ -86,4 +86,15 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
         return mDataset.size();
     }
 
+    private class FavClick implements View.OnClickListener{
+
+        public FavClick(){
+
+        }
+
+        @Override
+        public void onClick(View view){
+
+        }
+    }
 }

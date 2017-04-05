@@ -59,6 +59,7 @@ public class LogInActivity  extends AppCompatActivity {
 
 
         //Facebook
+        FacebookSdk.sdkInitialize(getApplicationContext());
         mFacebookCallbackManager = CallbackManager.Factory.create();
         mFacebookLoginButton = (LoginButton)findViewById(R.id.fb_loginButton);
         mFacebookLoginButton.setReadPermissions("email","public_profile");
@@ -135,7 +136,7 @@ public class LogInActivity  extends AppCompatActivity {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
@@ -154,5 +155,11 @@ public class LogInActivity  extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        mFacebookCallbackManager.onActivityResult(requestCode,resultCode,data);
     }
 }
