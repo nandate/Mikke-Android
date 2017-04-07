@@ -3,6 +3,7 @@ package com.service_mikke.mikke.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.MotionEvent;
 
 import com.service_mikke.mikke.fragments.MyPageFragment;
 import com.service_mikke.mikke.fragments.NoticeFragment;
@@ -13,7 +14,7 @@ import com.service_mikke.mikke.fragments.RecommendFragment;
  */
 
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class PagerAdapter extends FragmentStatePagerAdapter{
     int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs){
