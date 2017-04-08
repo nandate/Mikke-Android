@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:id="@+id/message_item">
+    android:layout_height="match_parent">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/messsage_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_margin="8dp"
         android:src="@drawable/book"
         android:layout_alignParentTop="true"
@@ -20,27 +19,31 @@
         android:id="@+id/notice_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_alignTop="@+id/messsage_icon"
         android:layout_toRightOf="@+id/messsage_icon"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="4dp"
         android:layout_toEndOf="@+id/messsage_icon"/>
+
+    <TextView
+        android:id="@+id/notice_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="1日前"
+        android:layout_marginTop="4dp"
+        android:layout_alignLeft="@+id/notice_title"
+        android:layout_below="@+id/notice_title"/>
 
     <TextView
         android:id="@+id/notice_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="2dp"
-        android:layout_alignLeft="@+id/notice_title"
-        android:layout_alignStart="@+id/notice_title"
-        android:layout_below="@+id/notice_title"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary">
-    </View>
+        android:textSize="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/notice_time"
+        android:layout_alignLeft="@+id/messsage_icon"/>
 
 </RelativeLayout>
