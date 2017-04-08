@@ -33,7 +33,7 @@
             android:name=".activities.UsedServicesActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
-
+        <activity android:name=".activities.FullServicesActivity"></activity>
 
         <activity android:name=".activities.LogInActivity"></activity>
         <activity android:name=".activities.SignUpActivity"></activity>

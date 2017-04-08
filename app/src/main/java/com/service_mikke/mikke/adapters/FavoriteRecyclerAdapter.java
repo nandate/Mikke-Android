@@ -1,8 +1,10 @@
 package com.service_mikke.mikke.adapters;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.service_mikke.mikke.R;
+import com.service_mikke.mikke.activities.FullServicesActivity;
 import com.service_mikke.mikke.models.Service;
 
 import java.util.ArrayList;
@@ -78,6 +81,7 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
                 holder.logo.setImageBitmap(logo);
             }
         });
+        holder.logo.setOnClickListener(new FavClick(mDataset.get(position)));
 
     }
 
@@ -87,14 +91,23 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
     }
 
     private class FavClick implements View.OnClickListener{
+        private Service service;
+        private String name,title,description;
 
-        public FavClick(){
-
+        public FavClick(Service service){
+            this.service = service;
+            this.name = service.getName();
+            this.title = service.getTitle();
+            this.description = service.getDescription();
         }
 
         @Override
         public void onClick(View view){
-
+            Intent intent = new Intent(view.getContext(), FullServicesActivity.class);
+            intent.putExtra("name",name);
+            intent.putExtra("title",title);
+            intent.putExtra("description",description);
+            view.getContext().startActivity(intent);
         }
     }
 }
