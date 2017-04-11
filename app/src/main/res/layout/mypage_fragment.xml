@@ -10,52 +10,68 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_icon"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:src="@drawable/book"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User Name"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/user_icon"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"/>
-
-        <View
-            android:id="@+id/border1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimary"
-            android:layout_below="@+id/user_name"
-            android:layout_marginTop="8dp">
-        </View>
-
-        <TextView
-            android:id="@+id/fav_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Fav"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/border1"
-            android:layout_marginTop="8dp"/>
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/favorite_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_below="@+id/fav_text_view"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:layout_marginBottom="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
         </android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradation_primal"
+            android:layout_above="@+id/favorite_recyclerView"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/user_icon"
+                android:textSize="18sp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:textColor="@android:color/white" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_icon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/book"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="#fafafa">
+
+                <TextView
+                    android:id="@+id/fav_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="あなたのミッケ！"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_below="@+id/user_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="12dp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
     </RelativeLayout>
 
 </LinearLayout>

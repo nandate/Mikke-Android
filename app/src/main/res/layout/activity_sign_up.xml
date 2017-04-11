@@ -11,40 +11,86 @@
     tools:context="com.service_mikke.mikke.activities.SignUpActivity">
 
     <EditText
-        android:id="@+id/emailField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_hint"
-        android:textAlignment="center">
-
-        <requestFocus/>
-    </EditText>
-
-    <EditText
         android:id="@+id/passwordField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/emailField"
         android:layout_below="@+id/emailField"
         android:ems="10"
         android:inputType="textPassword"
         android:hint="@string/password_hint"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:background="@drawable/bg_white_30"
+        android:padding="15dp"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/signupButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/white"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_white"
         android:layout_alignLeft="@+id/passwordField"
         android:layout_below="@+id/passwordField"
         android:text="@string/sign_up_button_label"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="#757575"
+        android:layout_alignRight="@+id/passwordField"
+        android:layout_alignEnd="@+id/passwordField"
+        tools:text="サインアップ" />
+
+    <TextView
+        android:text="SNSアカウントで登録"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signupButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/textView2"
+        android:textColor="@android:color/white" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/signupButton"
+        android:layout_alignStart="@+id/signupButton"
+        android:layout_alignRight="@+id/signupButton"
+        android:layout_alignEnd="@+id/signupButton"
+        android:textSize="14sp" />
+
+    <TextView
+        android:text="登録ボタンを押すことにより、利用規約に同意したことになります。"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/textView3"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/fb_loginButton"
+        android:layout_alignLeft="@+id/fb_loginButton"
+        android:layout_alignStart="@+id/fb_loginButton"
+        android:layout_alignRight="@+id/fb_loginButton"
+        android:layout_alignEnd="@+id/fb_loginButton" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_hint"
+        android:textAlignment="center"
+        android:background="@drawable/bg_white_30"
+        android:padding="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp">
+
+        <requestFocus/>
+    </EditText>
+
+
 </RelativeLayout>

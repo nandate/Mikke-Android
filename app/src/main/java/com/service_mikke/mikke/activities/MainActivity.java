@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
             mFirebaseAuth.signOut();
             loadLogInView();
         }
+        if(id == R.id.action_profile_set){
+            Intent intent = new Intent(MainActivity.this,UserSettingActivity.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

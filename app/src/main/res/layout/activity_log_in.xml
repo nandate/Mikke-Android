@@ -11,61 +11,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.LogInActivity">
 
-    <EditText
-        android:id="@+id/emailField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_hint"
-        android:textAlignment="center">
-
-        <requestFocus/>
-    </EditText>
-
 
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/emailField"
         android:layout_below="@+id/emailField"
         android:ems="10"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:background="@drawable/bg_white_30"
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_white"
         android:layout_marginTop="15dp"
         android:layout_alignLeft="@+id/passwordField"
         android:layout_below="@+id/passwordField"
-        android:textColor="@color/colorPrimary"
-        android:text="@string/login_button_label"/>
+        android:textColor="#757575"
+        android:text="@string/login_button_label"
+        android:layout_alignRight="@+id/passwordField"
+        android:layout_alignEnd="@+id/passwordField"
+        tools:text="ログイン" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:text="ソーシャルログインはこちら"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:layout_below="@+id/loginButton"/>
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/fb_loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/signUpText"
@@ -73,6 +49,49 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/fb_loginButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp"
-        android:text="@string/sign_up_text"/>
+        android:layout_marginTop="40dp"
+        tools:text="＞はじめての方"
+        android:text="@string/sign_up_text"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:text="SNSアカウントでログイン"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_hint"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_white_30"
+        android:padding="15dp"
+        android:textSize="14sp">
+
+        <requestFocus/>
+    </EditText>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_loginButton"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/loginButton"
+        android:layout_alignStart="@+id/loginButton"
+        android:textSize="14sp" />
 </RelativeLayout>

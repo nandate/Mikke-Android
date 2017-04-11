@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,42 +20,73 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/dark_grass"
+            android:id="@+id/imageView4" />
+
+        <TextView
+            android:text="ヒマなときにのぞいてみてください"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:id="@+id/textView5"
+            android:textColor="@android:color/white"
+            android:textStyle="normal|bold" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/circl"
+            android:id="@+id/imageView2"
+            android:layout_below="@+id/textView5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp" />
+
+        <ImageView
+            android:id="@+id/send_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/send"
+            android:layout_marginBottom="27dp"
+            android:layout_alignBottom="@+id/imageView2"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="毎日決まった時間にアプリ・Webサービス情報をお届けします。時間があったらのぞいてみてください。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/script2_description"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:layout_above="@+id/script2_next_button"
+            android:layout_marginBottom="50dp"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_alignRight="@+id/textView5"
+            android:layout_alignEnd="@+id/textView5" />
+
         <Button
             android:id="@+id/script2_next_button"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@drawable/gradation_primal"
+            android:background="@drawable/gradation_border"
             android:text="次へ"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="#FFFFFF"
-            android:textStyle="normal|bold"
             android:textAlignment="center"
-            android:layout_marginBottom="38dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignLeft="@+id/script2_description"
+            android:layout_alignStart="@+id/script2_description"
+            android:layout_marginBottom="40dp"
+            android:layout_alignRight="@+id/script2_description"
+            android:layout_alignEnd="@+id/script2_description" />
 
-        <ImageView
-            android:id="@+id/send_icon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/send"
-            android:layout_marginTop="120dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/script2_description"/>
-
-
-        <TextView
-            android:text="毎朝7時にあなたの為だけに\n3サービスをご紹介します。\nこんなサービスがあったのか\nを毎日感じられます！"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/script2_description"
-            android:textStyle="normal|bold"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textAlignment="center"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </LinearLayout>
