@@ -16,13 +16,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mindorks.placeholderview.SwipeDecor;
-import com.mindorks.placeholderview.SwipePlaceHolderView;
-import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.GenreListAdapter;
 import com.service_mikke.mikke.models.Genre;
-import com.service_mikke.mikke.models.GenreTinderCard;
 import com.service_mikke.mikke.models.User;
 
 import java.util.ArrayList;
@@ -47,7 +43,6 @@ public class GenresActivity extends AppCompatActivity{
 
     private String mUserId;
 
-    private HashMap<String,Integer> tags = new HashMap<>();
     private List<Genre> genres = new ArrayList<>();
 
     @Override
@@ -77,13 +72,10 @@ public class GenresActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 mDatabase.child("users").child(mUserId).child("selected_genres").setValue(User.getInstance().getSelected_genres());
-                MakeTagParams(mDatabase,mUserId);
                 Intent intent = new Intent(view.getContext(),UsedServicesActivity.class);
                 startActivity(intent);
             }
         });
-
-
 
 
         try{
@@ -109,22 +101,4 @@ public class GenresActivity extends AppCompatActivity{
     }
 
 
-    private void MakeTagParams(final DatabaseReference mDatabase, final String UserId)
-    {
-        mDatabase.child("tags").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot tagsSnapshot:dataSnapshot.getChildren()){
-                    tags.put(tagsSnapshot.getValue(String.class),0);
-                }
-                mDatabase.child("users").child(UserId).child("tags_point").setValue(tags);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 }

@@ -1,10 +1,12 @@
 package com.service_mikke.mikke.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,17 +27,29 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
+
         Genre genre = getItem(position);
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.genre_list_item,parent,false);
         }
 
-        String genre_name = genre.getName();
+        final String genre_name = genre.getName();
         String image_name = genre.getImage();
+
 
         int identifier = getContext().getResources().getIdentifier(image_name,"drawable",getContext().getPackageName());
         ImageView genre_image = (ImageView) convertView.findViewById(R.id.genre_imageView);
         TextView genre_name_text_View = (TextView) convertView.findViewById(R.id.genre_name_textView);
+
+        final CheckBox checkBox = (CheckBox)convertView.findViewById(R.id.checkBox);
+        checkBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if (checkBox.isChecked()){
+
+                }
+            }
+        });
 
         genre_name_text_View.setText(genre_name);
         genre_image.setImageResource(identifier);
