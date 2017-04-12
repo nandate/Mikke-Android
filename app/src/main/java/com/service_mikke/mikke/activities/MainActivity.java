@@ -1,5 +1,6 @@
 package com.service_mikke.mikke.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadLogInView(){
-        Intent intent=new Intent(this,LogInActivity.class);
+        Intent intent=new Intent(this,StartActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

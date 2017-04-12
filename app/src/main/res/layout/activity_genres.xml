@@ -30,12 +30,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.mindorks.placeholderview.SwipePlaceHolderView
-        android:id="@+id/genres_swipeView"
+    <ListView
+        android:id="@+id/genres_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-    </com.mindorks.placeholderview.SwipePlaceHolderView>
+        android:padding="16dp">
+    </ListView>
 
     <Button
         android:id="@+id/next_view_butotn"

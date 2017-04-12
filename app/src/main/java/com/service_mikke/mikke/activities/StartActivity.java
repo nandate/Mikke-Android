@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.ScriptPagerAdapter;
@@ -25,6 +26,8 @@ public class StartActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         FragmentManager manager = getSupportFragmentManager();
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ViewPager viewPager = (ViewPager)findViewById(R.id.script_pager);
 

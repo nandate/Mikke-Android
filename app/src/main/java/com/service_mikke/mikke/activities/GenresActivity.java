@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +20,7 @@ import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.service_mikke.mikke.R;
+import com.service_mikke.mikke.adapters.GenreListAdapter;
 import com.service_mikke.mikke.models.Genre;
 import com.service_mikke.mikke.models.GenreTinderCard;
 import com.service_mikke.mikke.models.User;
@@ -38,7 +40,7 @@ public class GenresActivity extends AppCompatActivity{
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
 
-    private SwipePlaceHolderView mSwipeView;
+    private ListView genresListView;
     private Context mContext;
     private Button next_view_button;
 
@@ -46,6 +48,7 @@ public class GenresActivity extends AppCompatActivity{
     private String mUserId;
 
     private HashMap<String,Integer> tags = new HashMap<>();
+    private List<Genre> genres = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -66,7 +69,7 @@ public class GenresActivity extends AppCompatActivity{
 
         mUserId =mFirebaseUser.getUid();
 
-        mSwipeView = (SwipePlaceHolderView)findViewById(R.id.genres_swipeView);
+        genresListView = (ListView)findViewById(R.id.genres_list_view);
         mContext = getApplicationContext();
 
         next_view_button = (Button)findViewById(R.id.next_view_butotn);
@@ -81,11 +84,6 @@ public class GenresActivity extends AppCompatActivity{
         });
 
 
-        mSwipeView.getBuilder()
-                .setDisplayViewCount(3)
-                .setSwipeDecor(new SwipeDecor()
-                        .setPaddingTop(20)
-                        .setRelativeScale(0.01f));
 
 
         try{
@@ -94,8 +92,10 @@ public class GenresActivity extends AppCompatActivity{
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot genreSnapshot: dataSnapshot.getChildren()){
                         Genre genre = genreSnapshot.getValue(Genre.class);
-                        mSwipeView.addView(new GenreTinderCard(mContext,genre,mSwipeView));
+                        genres.add(genre);
                     }
+                    GenreListAdapter genreListAdapter = new GenreListAdapter(GenresActivity.this,genres);
+                    genresListView.setAdapter(genreListAdapter);
                 }
 
                 @Override

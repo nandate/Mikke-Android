@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@drawable/gradation_primal">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:id="@+id/used_service_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/gradation_primal"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
@@ -24,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_used_services"
                 android:layout_gravity="center"
-                android:id="@+id/used_service_toolbar_title"/>
+                android:id="@+id/used_service_toolbar_title"
+                android:textColor="@android:color/white" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -39,11 +41,13 @@
 
     <Button
         android:id="@+id/next_view_butotn"
-        android:text="Done"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
+        android:text="結果を確認する"
+        android:layout_width="280dp"
+        android:background="@drawable/gradation_border"
         android:textColor="@android:color/white"
-        android:layout_height="60dp"
-        android:layout_weight="0"/>
+        android:layout_weight="0"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.facebook.login.widget.LoginButton;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.activities.GenresActivity;
+import com.service_mikke.mikke.activities.LogInActivity;
 import com.service_mikke.mikke.activities.SignUpActivity;
 
 /**
@@ -18,20 +20,30 @@ import com.service_mikke.mikke.activities.SignUpActivity;
 
 public class Script3Fragment extends Fragment{
 
-    private Button next_button;
+    private Button SignUp_Button,Login_Button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.script3_fragment,container,false);
 
-        next_button = (Button)v.findViewById(R.id.script3_next_button);
-        next_button.setOnClickListener(new View.OnClickListener() {
+        SignUp_Button = (Button)v.findViewById(R.id.signup_button);
+        SignUp_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),SignUpActivity.class);
                 startActivity(intent);
             }
         });
+
+        Login_Button = (Button)v.findViewById(R.id.login_button);
+        Login_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getActivity(), LogInActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
     }
 }

@@ -24,22 +24,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.StartActivity"></activity>
+        <activity
+            android:name=".activities.StartActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".activities.GenresActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label=""></activity>
 
         <activity
             android:name=".activities.UsedServicesActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label=""></activity>
 
-        <activity android:name=".activities.FullServicesActivity"></activity>
-        <activity android:name=".activities.MessageDetailActivity"></activity>
-        <activity android:name=".activities.UserSettingActivity"></activity>
+        <activity
+            android:name=".activities.FullServicesActivity"></activity>
+        <activity
+            android:name=".activities.MessageDetailActivity"></activity>
+        <activity
+            android:name=".activities.UserSettingActivity"></activity>
 
-        <activity android:name=".activities.LogInActivity"></activity>
-        <activity android:name=".activities.SignUpActivity"></activity>
+        <activity
+            android:name=".activities.LogInActivity"></activity>
+        <activity
+            android:name=".activities.SignUpActivity"></activity>
     </application>
 
 </manifest>
