@@ -93,7 +93,7 @@ public class ServiceTinderCard {
     @SwipeOut
     private void onSwipedOut(){
         Log.d("EVENT", "onSwipedOut");
-        addTagPoint(mService);
+        like_swipe(mService);
     }
 
     @SwipeCancelState
@@ -104,6 +104,8 @@ public class ServiceTinderCard {
     @SwipeIn
     private void onSwipeIn(){
         Log.d("EVENT", "onSwipedIn");
+        dislike_swipe(mService);
+
     }
 
     @SwipeInState
@@ -117,7 +119,44 @@ public class ServiceTinderCard {
     }
 
 
-    private void addTagPoint(final Service mService){
+    private void like_swipe(final Service mService){
+
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        final String mUserId =mFirebaseUser.getUid();
+        final ArrayList<String> tags = mService.getTags();
+
+        mDatabase.child("users").child(mUserId).child("tags_point").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    String tag_name = snapshot.getKey();
+                    if(tags.indexOf(tag_name)>0){
+                        Integer point = snapshot.getValue(Integer.class);
+                        point = point + 3;
+                        Map<String,Object> map = new HashMap<String, Object>();
+                        map.put(tag_name,point);
+                        mDatabase.child("users").child(mUserId).child("tags_point").updateChildren(map);
+                    }
+                }
+                mDatabase.child("users").child(mUserId).child("fav").push().setValue(mService);
+                mDatabase.child("users").child(mUserId).child("used_services").push().setValue(mService);
+                mDatabase.child("users").child(mUserId).child("recommends").child(mService.getName()).removeValue();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+    private void dislike_swipe(final Service mService){
 
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -139,8 +178,8 @@ public class ServiceTinderCard {
                         mDatabase.child("users").child(mUserId).child("tags_point").updateChildren(map);
                     }
                 }
-                mDatabase.child("users").child(mUserId).child("fav").push().setValue(mService);
                 mDatabase.child("users").child(mUserId).child("used_services").push().setValue(mService);
+                mDatabase.child("users").child(mUserId).child("recommends").child(mService.getName()).removeValue();
 
             }
 
@@ -151,4 +190,7 @@ public class ServiceTinderCard {
         });
 
     }
+
+
+
 }

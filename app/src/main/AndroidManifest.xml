@@ -49,6 +49,7 @@
             android:name=".activities.LogInActivity"></activity>
         <activity
             android:name=".activities.SignUpActivity"></activity>
+
     </application>
 
 </manifest>
