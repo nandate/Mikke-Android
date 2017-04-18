@@ -16,8 +16,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.PagerAdapter;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "	TYxLsESiluERfpvy2wEnBhHpe";
+    private static final String TWITTER_SECRET = "	5E2rSYkJgZrUCi2biP5sdNIzyPBhFESMu0ea6GdcDExub9isZZ";
+
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -32,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
 
         tabLayout = (TabLayout)findViewById(R.id.tab_layout);

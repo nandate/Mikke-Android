@@ -24,9 +24,15 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.TwitterAuthProvider;
 import com.service_mikke.mikke.R;
 
 import com.facebook.FacebookSdk;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 /**
  * Created by takuya on 3/17/17.
@@ -42,8 +48,10 @@ public class LogInActivity  extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
 
     private LoginButton mFacebookLoginButton;
+    private TwitterLoginButton mTwitterLoginButton;
     private CallbackManager mFacebookCallbackManager;
     private AccessTokenTracker mFacebookAccessTokenTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -66,7 +74,6 @@ public class LogInActivity  extends AppCompatActivity {
         mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("fblogin","Facebook:Success");
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -82,10 +89,28 @@ public class LogInActivity  extends AppCompatActivity {
         });
 
 
+        //Twitter
+
+        mTwitterLoginButton = (TwitterLoginButton)findViewById(R.id.tw_loginButton);
+        mTwitterLoginButton.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                handleTwitterSession(result.data);
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                Log.d("tw","twitter error");
+
+            }
+        });
+
+
+
         signUpTextView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(LogInActivity.this,StartActivity.class);
+                Intent intent = new Intent(LogInActivity.this,SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -157,9 +182,36 @@ public class LogInActivity  extends AppCompatActivity {
                 });
     }
 
+    private void handleTwitterSession(TwitterSession session){
+        AuthCredential credential = TwitterAuthProvider.getCredential(
+                session.getAuthToken().token,
+                session.getAuthToken().secret);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Intent intent = new Intent(LogInActivity.this,MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
+                            builder.setMessage(task.getException().getMessage())
+                                    .setTitle(R.string.login_error_title)
+                                    .setPositiveButton(android.R.string.ok,null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+                    }
+                });
+    }
+
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
+        mTwitterLoginButton.onActivityResult(requestCode,resultCode,data);
         mFacebookCallbackManager.onActivityResult(requestCode,resultCode,data);
     }
 }

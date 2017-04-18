@@ -47,7 +47,7 @@
         android:id="@+id/signUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fb_loginButton"
+        android:layout_below="@+id/tw_loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         tools:text="＞はじめての方"
@@ -87,11 +87,24 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_loginButton"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/loginButton"
         android:layout_alignStart="@+id/loginButton"
         android:textSize="14sp" />
+
+
+    <com.twitter.sdk.android.core.identity.TwitterLoginButton
+        android:id="@+id/tw_loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_below="@+id/fb_loginButton"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/fb_loginButton"
+        android:layout_alignStart="@+id/fb_loginButton"
+        android:layout_alignRight="@+id/fb_loginButton"
+        android:layout_alignEnd="@+id/fb_loginButton"/>
+
 </RelativeLayout>
