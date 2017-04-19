@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.models.Genre;
+import com.service_mikke.mikke.models.User;
 
 import java.util.List;
 
@@ -33,27 +34,49 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.genre_list_item,parent,false);
         }
 
+        convertView.setTag(genre);
+        convertView.setOnClickListener(new GenreRowClick());
         final String genre_name = genre.getName();
         String image_name = genre.getImage();
-
 
         int identifier = getContext().getResources().getIdentifier(image_name,"drawable",getContext().getPackageName());
         ImageView genre_image = (ImageView) convertView.findViewById(R.id.genre_imageView);
         TextView genre_name_text_View = (TextView) convertView.findViewById(R.id.genre_name_textView);
 
-        final CheckBox checkBox = (CheckBox)convertView.findViewById(R.id.checkBox);
-        checkBox.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                if (checkBox.isChecked()){
-
-                }
-            }
-        });
-
         genre_name_text_View.setText(genre_name);
         genre_image.setImageResource(identifier);
 
+        if(User.getInstance().getSelected_genres().indexOf(genre) >= 0 )
+        {
+            convertView.findViewById(R.id.checked_image).setVisibility(View.VISIBLE);
+            convertView.findViewById(R.id.none_check_image).setVisibility(View.INVISIBLE);
+        }else
+        {
+            convertView.findViewById(R.id.checked_image).setVisibility(View.INVISIBLE);
+            convertView.findViewById(R.id.none_check_image).setVisibility(View.VISIBLE);
+        }
+
         return convertView;
+    }
+
+    private class GenreRowClick implements View.OnClickListener{
+        @Override
+        public void onClick(View v){
+            Genre genre = (Genre)v.getTag();
+            ImageView checked_image = (ImageView)v.findViewById(R.id.checked_image);
+            ImageView nonecheck_image = (ImageView)v.findViewById(R.id.none_check_image);
+            User user = User.getInstance();
+
+            if(user.hasGenre(genre)){
+                user.removeSelectedGenre(genre);
+                checked_image.setVisibility(View.INVISIBLE);
+                nonecheck_image.setVisibility(View.VISIBLE);
+            }else {
+                user.addSelectedGenres(genre);
+                checked_image.setVisibility(View.VISIBLE);
+                nonecheck_image.setVisibility(View.INVISIBLE);
+            }
+            System.out.println(user.getSelected_genres());
+        }
     }
 }

@@ -35,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:divider="@null">
     </ListView>
 
     <Button
@@ -45,7 +46,6 @@
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:layout_height="60dp"
-        android:layout_weight="0"
-        android:visibility="invisible"/>
+        android:layout_weight="0"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

@@ -24,12 +24,14 @@ import com.service_mikke.mikke.models.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by takuya on 3/17/17.
  */
 
-public class GenresActivity extends AppCompatActivity{
+public class GenresActivity extends AppCompatActivity implements Observer{
 
 
     private FirebaseAuth mFirebaseAuth;
@@ -59,15 +61,17 @@ public class GenresActivity extends AppCompatActivity{
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
-        User user = User.getInstance();
-        user.getSelected_genres();
+        User.getInstance().addObserver(this);
+        User.getInstance().getSelected_genres();
 
         mUserId =mFirebaseUser.getUid();
 
         genresListView = (ListView)findViewById(R.id.genres_list_view);
         mContext = getApplicationContext();
 
+
         next_view_button = (Button)findViewById(R.id.next_view_butotn);
+        updateCounterButton(User.getInstance().getSelected_genres().size());
         next_view_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +101,20 @@ public class GenresActivity extends AppCompatActivity{
             });
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(Observable observable,Object o){
+        updateCounterButton((int) o);
+    }
+
+    private void updateCounterButton(int amount){
+        if (amount < 5){
+            next_view_button.setClickable(false);
+
+        }else{
+            next_view_button.setClickable(true);
         }
     }
 
