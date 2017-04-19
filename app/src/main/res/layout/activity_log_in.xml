@@ -93,6 +93,8 @@
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/loginButton"
         android:layout_alignStart="@+id/loginButton"
+        android:layout_alignRight="@+id/loginButton"
+        android:layout_alignEnd="@+id/loginButton"
         android:textSize="14sp" />
 
 

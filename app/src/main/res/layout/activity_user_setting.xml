@@ -1,27 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="ユーザー名"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:layout_gravity="center"
+        android:textSize="12sp"
+        android:layout_marginTop="40dp"/>
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:inputType="textPersonName"
+        android:text="username"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:background="@drawable/bg_white_30"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:textSize="16sp" />
 
-        <RadioButton
-            android:text="RadioButton"
+    <TextView
+        android:text="生年月日 *2017/01/01→20170101"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:textSize="16sp"
+        android:background="@drawable/bg_white_30"/>
+
+    <TextView
+        android:text="性別"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView17"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <RadioGroup android:id="@+id/radiogroup_sex"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <RadioButton android:id="@+id/radio_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton"
-            android:layout_weight="1" />
+            android:text="男性">
+        </RadioButton>
 
-        <RadioButton
-            android:text="RadioButton"
+        <RadioButton android:id="@+id/radio_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton2"
-            android:layout_weight="1" />
+            android:layout_marginLeft="20dp"
+            android:text="女性">
+        </RadioButton>
     </RadioGroup>
+
+    <TextView
+        android:text="所在地"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView16"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:textSize="16sp"
+        android:background="@drawable/bg_white_30"/>
+
+    <Button
+        android:text="変更する"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:id="@+id/button5"
+        android:layout_gravity="center"
+        android:background="@drawable/gradation_primal_radius"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="40dp"/>
+
+
 </LinearLayout>

@@ -7,8 +7,8 @@
 
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_width="280dp"
+            android:layout_height="200dp"
             android:id="@+id/full_service_logo"
             android:scaleType="fitCenter"
             android:paddingTop="8dp"
@@ -40,5 +40,32 @@
             android:padding="16dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/full_company_name"/>
+
+
+        <Button
+            android:text="お気に入り解除"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:id="@+id/remove_favrite_button"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_white"
+            android:layout_below="@+id/full_service_description"/>
+
+
+        <Button
+            android:text="もっと詳しく"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:id="@+id/button4"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/remove_favrite_button"
+            android:background="@drawable/gradation_primal_radius"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="40dp"/>
+
+
+
 
 </RelativeLayout>
