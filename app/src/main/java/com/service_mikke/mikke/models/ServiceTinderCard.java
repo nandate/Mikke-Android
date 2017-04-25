@@ -93,7 +93,7 @@ public class ServiceTinderCard {
     @SwipeOut
     private void onSwipedOut(){
         Log.d("EVENT", "onSwipedOut");
-        like_swipe(mService);
+        //like_swipe(mService);
     }
 
     @SwipeCancelState
@@ -104,7 +104,7 @@ public class ServiceTinderCard {
     @SwipeIn
     private void onSwipeIn(){
         Log.d("EVENT", "onSwipedIn");
-        dislike_swipe(mService);
+        //dislike_swipe(mService);
 
     }
 
@@ -141,11 +141,8 @@ public class ServiceTinderCard {
                     }
                 }
 
-                mDatabase.child("users").child(mUserId).child("recommends").child(mService.getName()).setValue(null);
                 mDatabase.child("users").child(mUserId).child("fav").push().setValue(mService);
                 mDatabase.child("users").child(mUserId).child("used_services").push().setValue(mService);
-
-
             }
 
             @Override
@@ -179,8 +176,6 @@ public class ServiceTinderCard {
                         mDatabase.child("users").child(mUserId).child("tags_point").updateChildren(map);
                     }
                 }
-
-                mDatabase.child("users").child(mUserId).child("recommends").child(mService.getName()).setValue(null);
                 mDatabase.child("users").child(mUserId).child("used_services").push().setValue(mService);
             }
 

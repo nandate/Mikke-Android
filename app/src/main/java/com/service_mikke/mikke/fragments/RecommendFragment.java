@@ -3,6 +3,7 @@ package com.service_mikke.mikke.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
+import com.mindorks.placeholderview.listeners.ItemRemovedListener;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.models.Service;
 import com.service_mikke.mikke.models.ServiceTinderCard;
@@ -62,12 +64,23 @@ public class RecommendFragment extends Fragment{
                         .setRelativeScale(0.01f));
 
         mSwipeView.getScrollBarSize();
+        mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
+            @Override
+            public void onItemRemoved(int count) {
+                if(count == 0){
+                    mDatabase.child("users").child(mUserId).child("recommends").removeValue();
+                }
+            }
+        });
+
         try{
             mDatabase.child("users").child(mUserId).child("recommends").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        String key = snapshot.getKey();
                         Service recommend = snapshot.getValue(Service.class);
+                        Log.d("a",key);
                         mSwipeView.addView(new ServiceTinderCard(mContext,recommend,mSwipeView));
                     }
                 }
@@ -79,6 +92,7 @@ public class RecommendFragment extends Fragment{
         }catch (Exception e){
             e.printStackTrace();
         }
+
 
         like_button = (Button)v.findViewById(R.id.like_button);
         like_button.setOnClickListener(new View.OnClickListener() {
