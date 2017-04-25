@@ -31,11 +31,15 @@ public class User extends Observable{
     public void addSelectedGenres(Genre genre){
         if(!selected_genres.contains(genre)){
             selected_genres.add(genre);
+            setChanged();
+            notifyObservers(selected_genres.size());
         }
     }
 
     public void removeSelectedGenre(Genre genre){
         selected_genres.remove(genre);
+        setChanged();
+        notifyObservers(selected_genres.size());
 
     }
 

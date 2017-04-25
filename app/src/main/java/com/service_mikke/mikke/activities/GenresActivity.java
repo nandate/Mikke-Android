@@ -92,6 +92,7 @@ public class GenresActivity extends AppCompatActivity implements Observer{
                     }
                     GenreListAdapter genreListAdapter = new GenreListAdapter(GenresActivity.this,genres);
                     genresListView.setAdapter(genreListAdapter);
+
                 }
 
                 @Override
@@ -111,9 +112,10 @@ public class GenresActivity extends AppCompatActivity implements Observer{
 
     private void updateCounterButton(int amount){
         if (amount < 5){
+            next_view_button.setText(String.format(" %1$d個 選択中(or more !)" , amount));
             next_view_button.setClickable(false);
-
         }else{
+            next_view_button.setText(String.format("　これにする　(%1$d個選択中)", amount));
             next_view_button.setClickable(true);
         }
     }

@@ -61,6 +61,7 @@ public class RecommendFragment extends Fragment{
                         .setPaddingTop(10)
                         .setRelativeScale(0.01f));
 
+        mSwipeView.getScrollBarSize();
         try{
             mDatabase.child("users").child(mUserId).child("recommends").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -70,7 +71,6 @@ public class RecommendFragment extends Fragment{
                         mSwipeView.addView(new ServiceTinderCard(mContext,recommend,mSwipeView));
                     }
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
@@ -97,8 +97,5 @@ public class RecommendFragment extends Fragment{
         });
         return v;
     }
-
-
-
 
 }

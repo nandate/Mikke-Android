@@ -5,58 +5,56 @@
 
     <TextView
         android:text="ユーザー名"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
         android:id="@+id/textView14"
         android:layout_gravity="center"
-        android:textSize="12sp"
-        android:layout_marginTop="40dp"/>
+        android:textSize="@dimen/smallest_textSize"
+        android:layout_marginTop="@dimen/topSpace_marginTop"/>
 
     <EditText
-        android:layout_width="280dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
         android:inputType="textPersonName"
         android:text="username"
         android:ems="10"
         android:id="@+id/editText"
         android:background="@drawable/bg_white_30"
         android:layout_gravity="center"
-        android:layout_marginTop="0dp"
-        android:textSize="16sp" />
+        android:textSize="@dimen/normal_textSize" />
 
     <TextView
         android:text="生年月日 *2017/01/01→20170101"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
         android:id="@+id/textView15"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="@dimen/profile_edit_textArea_marginTop"
+        android:textSize="@dimen/smallest_textSize" />
 
     <EditText
-        android:layout_width="280dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
         android:inputType="date"
         android:ems="10"
         android:id="@+id/editText5"
         android:layout_gravity="center"
-        android:layout_marginTop="0dp"
-        android:textSize="16sp"
+        android:textSize="@dimen/normal_textSize"
         android:background="@drawable/bg_white_30"/>
 
     <TextView
         android:text="性別"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
         android:id="@+id/textView17"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="@dimen/profile_edit_textArea_marginTop"/>
 
     <RadioGroup android:id="@+id/radiogroup_sex"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp">
+        android:layout_gravity="center">
 
         <RadioButton android:id="@+id/radio_male"
             android:layout_width="wrap_content"
@@ -67,39 +65,33 @@
         <RadioButton android:id="@+id/radio_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/profile_edit_gender_marginLeft"
             android:text="女性">
         </RadioButton>
     </RadioGroup>
 
     <TextView
         android:text="所在地"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
         android:id="@+id/textView16"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="@dimen/profile_edit_textArea_marginTop"/>
 
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        android:inputType="textPostalAddress"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:layout_gravity="center"
-        android:layout_marginTop="0dp"
-        android:textSize="16sp"
-        android:background="@drawable/bg_white_30"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner2" />
 
     <Button
         android:text="変更する"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
         android:id="@+id/button5"
         android:layout_gravity="center"
         android:background="@drawable/gradation_primal_radius"
         android:textColor="@android:color/white"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="@dimen/profile_edit_button_marginTop"/>
 
 
 </LinearLayout>

@@ -13,9 +13,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/favorite_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:padding="8dp"
-            android:layout_marginBottom="0dp"
+            android:layout_height="@dimen/mypage_recycleView_height"
+            android:padding="@dimen/mypage_recycleView_padding"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
@@ -35,18 +34,18 @@
                 android:text="User Name"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/user_icon"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+                android:textSize="@dimen/title_textSize"
+                android:layout_marginTop="@dimen/mypage_recycleView_marginTop"
+                android:layout_marginBottom="@dimen/mypage_name_marginBottom"
                 android:textColor="@android:color/white" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_icon"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="@dimen/mypage_circleView_width"
+                android:layout_height="@dimen/mypage_circleView_height"
                 android:src="@drawable/book"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="@dimen/mypage_circleView_marginTop"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,12 +60,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="あなたのミッケ！"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/normal_textSize"
                     android:textColor="#757575"
                     android:layout_below="@+id/user_name"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginTop="@dimen/mypage_textView_marginTop"
+                    android:layout_marginBottom="@dimen/mypage_textView_marginBottom"/>
             </RelativeLayout>
 
         </RelativeLayout>

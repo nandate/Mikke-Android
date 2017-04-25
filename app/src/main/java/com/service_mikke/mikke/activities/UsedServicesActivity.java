@@ -103,6 +103,7 @@ public class UsedServicesActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Log.d("a",snapshot.getKey());
                         String name = (String)snapshot.child("name").getValue();
                         for(int i=0;i<service_names.size();i++){
                             if(name.equals(service_names.get(i))){

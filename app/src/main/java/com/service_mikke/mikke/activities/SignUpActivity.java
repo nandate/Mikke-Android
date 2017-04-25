@@ -9,9 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.service_mikke.mikke.R;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import java.util.HashMap;
 
@@ -33,6 +42,11 @@ public class SignUpActivity extends AppCompatActivity{
     protected Button signUpButton;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabase;
+
+    private LoginButton mFacebookLoginButton;
+    private CallbackManager mFacebookCallbackManager;
+
+    private TwitterLoginButton mTwitterLoginButton;
 
     private HashMap<String,Integer> tags = new HashMap<>();
 
@@ -91,6 +105,27 @@ public class SignUpActivity extends AppCompatActivity{
         });
 
 
+        mFacebookCallbackManager = CallbackManager.Factory.create();
+        mFacebookLoginButton = (LoginButton)findViewById(R.id.fb_signupButton);
+        mFacebookLoginButton.setReadPermissions("email","public_profile");
+        mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
+
     }
 
     private void createUser(final DatabaseReference mDatabase,final String userId){
@@ -101,7 +136,7 @@ public class SignUpActivity extends AppCompatActivity{
                     tags.put(tagsSnapshot.getValue(String.class),0);
                 }
                 mDatabase.child("users").child(userId).child("tags_point").setValue(tags);
-                mDatabase.child("users").child(userId).child("name").setValue(userId);
+                mDatabase.child("users").child(userId).child("user_name").setValue(userId);
             }
 
             @Override
@@ -111,4 +146,39 @@ public class SignUpActivity extends AppCompatActivity{
         });
 
     }
+
+
+    private void handleFacebookAccessToken(AccessToken token){
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            createUser(FirebaseDatabase.getInstance().getReference(),task.getResult().getUser().getUid());
+                            Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                            builder.setMessage(task.getException().getMessage())
+                                    .setTitle(R.string.login_error_title)
+                                    .setPositiveButton(android.R.string.ok,null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+
+                    }
+                });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        mFacebookCallbackManager.onActivityResult(requestCode,resultCode,data);
+    }
+
+
 }

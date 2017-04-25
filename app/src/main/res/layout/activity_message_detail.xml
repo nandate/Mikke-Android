@@ -5,39 +5,40 @@
     android:layout_width="match_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             app:srcCompat="@drawable/book"
             android:id="@+id/message_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/notice_more_image_layout_width"
+            android:layout_height="@dimen/notice_more_image_layout_height"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/notice_more_marginTop"
+            android:layout_marginBottom="@dimen/notice_more_marginBottom"
             />
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
             android:id="@+id/notice_title"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/notice_more_margin"
             android:gravity="center_horizontal|center_vertical|left"
-            android:textSize="16sp"
+            android:textSize="@dimen/title_textSize"
             android:textStyle="normal|bold"
             android:layout_gravity="center"
             />
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
             android:id="@+id/notice_time"
             android:gravity="center_horizontal|center_vertical"
             android:layout_gravity="center"/>
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
             android:id="@+id/notice_content"
             android:gravity="center_horizontal|center_vertical|left"

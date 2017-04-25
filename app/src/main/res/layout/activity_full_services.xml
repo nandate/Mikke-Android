@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,65 +7,61 @@
 
 
         <ImageView
-            android:layout_width="280dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
             android:id="@+id/full_service_logo"
-            android:scaleType="fitCenter"
-            android:paddingTop="8dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="@dimen/favorite_item_more_logo_height"
+            android:layout_marginTop="@dimen/favorite_item_more_marginTop"
+            android:layout_marginLeft="@dimen/favorite_item_more_margin_left"
+            android:layout_marginRight="@dimen/favorite_item_more_margin_right"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
             android:id="@+id/full_service_name"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/full_service_logo"
-            android:padding="16dp"
-            android:textSize="30sp"/>
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
+            android:textStyle="normal|bold"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
             android:id="@+id/full_company_name"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/full_service_name"/>
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
             android:id="@+id/full_service_description"
-            android:padding="16dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/full_company_name"/>
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"/>
 
 
         <Button
             android:text="お気に入り解除"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="@dimen/button_layout_height"
             android:id="@+id/remove_favrite_button"
-            android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/bg_white"
-            android:layout_below="@+id/full_service_description"/>
+            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_white"/>
 
 
         <Button
             android:text="もっと詳しく"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:id="@+id/button4"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/remove_favrite_button"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="@dimen/button_layout_height"
+            android:id="@+id/link_button"
+            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+            android:layout_gravity="center"
             android:background="@drawable/gradation_primal_radius"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="@dimen/favorite_item_more_marginTop"/>
 
 
 
 
-</RelativeLayout>
+</LinearLayout>

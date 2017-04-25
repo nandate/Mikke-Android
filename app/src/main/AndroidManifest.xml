@@ -9,7 +9,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Mikke!"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
@@ -26,29 +27,38 @@
 
         <activity
             android:name=".activities.StartActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity
             android:name=".activities.GenresActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label=""></activity>
+            android:label="">
+        </activity>
 
         <activity
             android:name=".activities.UsedServicesActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label=""></activity>
+            android:label="">
+        </activity>
 
         <activity
-            android:name=".activities.FullServicesActivity"></activity>
-        <activity
-            android:name=".activities.MessageDetailActivity"></activity>
-        <activity
-            android:name=".activities.UserSettingActivity"></activity>
+            android:name=".activities.FullServicesActivity">
+        </activity>
 
         <activity
-            android:name=".activities.LogInActivity"></activity>
+            android:name=".activities.MessageDetailActivity">
+        </activity>
         <activity
-            android:name=".activities.SignUpActivity"></activity>
+            android:name=".activities.UserSettingActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.LogInActivity">
+        </activity>
+        <activity
+            android:name=".activities.SignUpActivity">
+        </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"

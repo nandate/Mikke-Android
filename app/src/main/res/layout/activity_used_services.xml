@@ -40,14 +40,14 @@
     </com.mindorks.placeholderview.SwipePlaceHolderView>
 
     <Button
-        android:id="@+id/next_view_butotn"
+        android:id="@+id/next_view_button"
         android:text="結果を確認する"
-        android:layout_width="280dp"
+        android:layout_width="@dimen/button_layout_width"
         android:background="@drawable/gradation_border"
         android:textColor="@android:color/white"
         android:layout_weight="0"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/button_layout_height"
         android:layout_gravity="center"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="@dimen/script_start_button_marginBottom"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

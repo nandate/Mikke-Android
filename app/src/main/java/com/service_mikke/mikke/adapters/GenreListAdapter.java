@@ -43,6 +43,7 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
         ImageView genre_image = (ImageView) convertView.findViewById(R.id.genre_imageView);
         TextView genre_name_text_View = (TextView) convertView.findViewById(R.id.genre_name_textView);
 
+
         genre_name_text_View.setText(genre_name);
         genre_image.setImageResource(identifier);
 
