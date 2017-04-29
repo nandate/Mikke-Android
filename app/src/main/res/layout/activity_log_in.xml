@@ -11,7 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.LogInActivity">
 
-
     <EditText
         android:id="@+id/passwordField"
         android:layout_width="@dimen/button_layout_width"
@@ -104,7 +103,7 @@
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
         android:id="@+id/tw_loginButton"
         android:layout_width="@dimen/button_layout_width"
-        android:layout_height="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
         android:layout_below="@+id/fb_loginButton"
         android:layout_marginTop="@dimen/login_textArea_marginTop"
         android:layout_alignLeft="@+id/fb_loginButton"

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.models.Genre;
 import com.service_mikke.mikke.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ import java.util.List;
  */
 
 public class GenreListAdapter extends ArrayAdapter<Genre>{
+
     public GenreListAdapter(Context context, List<Genre> genres){
         super(context, R.layout.genre_list_item,genres);
     }
@@ -39,13 +41,21 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
         final String genre_name = genre.getName();
         String image_name = genre.getImage();
 
+
         int identifier = getContext().getResources().getIdentifier(image_name,"drawable",getContext().getPackageName());
         ImageView genre_image = (ImageView) convertView.findViewById(R.id.genre_imageView);
         TextView genre_name_text_View = (TextView) convertView.findViewById(R.id.genre_name_textView);
 
+        Picasso.with(getContext()).load(identifier).into(genre_image);
+        /*if(genre_image != null){
+            genre_image.setImageDrawable(null);
+        }
+        */
+
+
 
         genre_name_text_View.setText(genre_name);
-        genre_image.setImageResource(identifier);
+        //genre_image.setImageResource(identifier);
 
         if(User.getInstance().getSelected_genres().indexOf(genre) >= 0 )
         {

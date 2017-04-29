@@ -78,9 +78,7 @@ public class RecommendFragment extends Fragment{
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                        String key = snapshot.getKey();
                         Service recommend = snapshot.getValue(Service.class);
-                        Log.d("a",key);
                         mSwipeView.addView(new ServiceTinderCard(mContext,recommend,mSwipeView));
                     }
                 }

@@ -93,7 +93,7 @@ public class ServiceTinderCard {
     @SwipeOut
     private void onSwipedOut(){
         Log.d("EVENT", "onSwipedOut");
-        //like_swipe(mService);
+        like_swipe(mService);
     }
 
     @SwipeCancelState
@@ -104,7 +104,7 @@ public class ServiceTinderCard {
     @SwipeIn
     private void onSwipeIn(){
         Log.d("EVENT", "onSwipedIn");
-        //dislike_swipe(mService);
+        dislike_swipe(mService);
 
     }
 

@@ -54,15 +54,17 @@
         </activity>
 
         <activity
-            android:name=".activities.LogInActivity">
+            android:name=".activities.LogInActivity"
+            android:label="ログイン">
         </activity>
         <activity
-            android:name=".activities.SignUpActivity">
+            android:name=".activities.SignUpActivity"
+            android:label="Sign Up">
         </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="d1eeeec3ff151a340b2a85306c0057dffc06a5f3" />
+            android:value="@string/twitter_api_key" />
     </application>
 
 </manifest>

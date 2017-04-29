@@ -75,7 +75,7 @@ public class UsedServicesActivity extends AppCompatActivity {
 
         User.getInstance().getUsed_services();
 
-        next_view_button = (Button)findViewById(R.id.next_view_butotn);
+        next_view_button = (Button)findViewById(R.id.next_view_button);
 
         next_view_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,12 +103,10 @@ public class UsedServicesActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                        Log.d("a",snapshot.getKey());
                         String name = (String)snapshot.child("name").getValue();
                         for(int i=0;i<service_names.size();i++){
                             if(name.equals(service_names.get(i))){
                                 Service service = new Service();
-
                                 service.setName(name);
                                 service.setTitle((String)snapshot.child("title").getValue());
                                 service.setCost((String)snapshot.child("cost").getValue());
@@ -116,6 +114,7 @@ public class UsedServicesActivity extends AppCompatActivity {
                                 service.setLink((String)snapshot.child("link").getValue());
                                 ArrayList<String> tags = (ArrayList<String>)snapshot.child("tags").getValue();
                                 service.setTags(tags);
+
 
                                 services.add(service);
 
