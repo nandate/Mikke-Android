@@ -2,8 +2,12 @@ package com.service_mikke.mikke.activities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,9 +22,11 @@ import com.service_mikke.mikke.R;
 
 public class FullServicesActivity extends AppCompatActivity{
 
-    private String name,title,description;
+    private String name,title,description,link;
     private TextView name_view,title_view,description_view;
     private ImageView full_logo;
+    private Button link_button;
+    private WebView webView;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference storageReference = storage.getReferenceFromUrl("gs://mikke-d5d0a.appspot.com/");
 
@@ -35,6 +41,7 @@ public class FullServicesActivity extends AppCompatActivity{
             name = extras.getString("name");
             title = extras.getString("title");
             description = extras.getString("description");
+            link = extras.getString("link");
         }
 
         full_logo = (ImageView)findViewById(R.id.full_service_logo);
@@ -54,6 +61,16 @@ public class FullServicesActivity extends AppCompatActivity{
         title_view.setText(title);
         description_view = (TextView)findViewById(R.id.full_service_description);
         description_view.setText(description);
+
+        webView = (WebView)findViewById(R.id.web_view);
+
+        link_button = (Button)findViewById(R.id.link_button);
+        link_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.loadUrl(link);
+            }
+        });
     }
 
 }

@@ -92,13 +92,14 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
 
     private class FavClick implements View.OnClickListener{
         private Service service;
-        private String name,title,description;
+        private String name,title,description,link;
 
         public FavClick(Service service){
             this.service = service;
             this.name = service.getName();
             this.title = service.getTitle();
             this.description = service.getDescription();
+            this.link = service.getLink();
         }
 
         @Override
@@ -107,6 +108,7 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
             intent.putExtra("name",name);
             intent.putExtra("title",title);
             intent.putExtra("description",description);
+            intent.putExtra("link",link);
             view.getContext().startActivity(intent);
         }
     }
