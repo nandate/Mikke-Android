@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
         <ImageView
             android:layout_width="match_parent"
             android:id="@+id/full_service_logo"
@@ -60,12 +59,4 @@
             android:background="@drawable/gradation_primal_radius"
             android:textColor="@android:color/white"
             android:layout_marginBottom="@dimen/favorite_item_more_marginTop"/>
-
-        <WebView
-            android:id="@+id/web_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </WebView>
-
-
 </LinearLayout>
