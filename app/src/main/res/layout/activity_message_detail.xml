@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            app:srcCompat="@drawable/book"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/message_icon"
             android:layout_width="@dimen/notice_more_image_layout_width"
             android:layout_height="@dimen/notice_more_image_layout_height"
@@ -22,7 +21,7 @@
         <TextView
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
-            android:id="@+id/notice_title"
+            android:id="@+id/message_title"
             android:layout_margin="@dimen/notice_more_margin"
             android:gravity="center_horizontal|center_vertical|left"
             android:textSize="@dimen/title_textSize"
@@ -33,14 +32,14 @@
         <TextView
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
-            android:id="@+id/notice_time"
+            android:id="@+id/message_time"
             android:gravity="center_horizontal|center_vertical"
             android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
-            android:id="@+id/notice_content"
+            android:id="@+id/message_content"
             android:gravity="center_horizontal|center_vertical|left"
             android:layout_margin="20dp"
             android:layout_gravity="center"

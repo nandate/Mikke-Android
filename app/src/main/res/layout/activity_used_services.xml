@@ -39,7 +39,10 @@
         android:layout_weight="1">
     </com.mindorks.placeholderview.SwipePlaceHolderView>
 
-    <Button
+    
+
+
+<Button
         android:id="@+id/next_view_button"
         android:text="結果を確認する"
         android:layout_width="@dimen/button_layout_width"

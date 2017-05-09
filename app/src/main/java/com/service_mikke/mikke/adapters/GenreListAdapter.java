@@ -28,6 +28,7 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
         super(context, R.layout.genre_list_item,genres);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
@@ -35,7 +36,6 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.genre_list_item,parent,false);
         }
-
         convertView.setTag(genre);
         convertView.setOnClickListener(new GenreRowClick());
         final String genre_name = genre.getName();
@@ -46,16 +46,12 @@ public class GenreListAdapter extends ArrayAdapter<Genre>{
         ImageView genre_image = (ImageView) convertView.findViewById(R.id.genre_imageView);
         TextView genre_name_text_View = (TextView) convertView.findViewById(R.id.genre_name_textView);
 
-        Picasso.with(getContext()).load(identifier).into(genre_image);
-        /*if(genre_image != null){
-            genre_image.setImageDrawable(null);
+        if(identifier != 0){
+            Picasso.with(getContext()).load(identifier).into(genre_image);
         }
-        */
-
 
 
         genre_name_text_View.setText(genre_name);
-        //genre_image.setImageResource(identifier);
 
         if(User.getInstance().getSelected_genres().indexOf(genre) >= 0 )
         {

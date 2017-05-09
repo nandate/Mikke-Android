@@ -5,14 +5,9 @@ package com.service_mikke.mikke.models;
  */
 
 public class Message {
-    private java.lang.String title,content;
-    private java.lang.String from,to;
-
-
-    public Message(String title,String content){
-        this.title = title;
-        this.content = content;
-    }
+    private String title,content;
+    private Long created_at;
+    private String photoUrl;
 
 
     public String getTitle(){
@@ -31,21 +26,22 @@ public class Message {
         this.content = content;
     }
 
-    public String getFrom(){
-        return this.from;
+    public Long getCreated_at(){
+        return this.created_at;
     }
 
-    public void setFrom(String from){
-        this.from = from;
+    public void setCreated_at(Long created_at){
+        this.created_at = created_at;
     }
 
-    public String getTo(){
-        return this.to;
+    public String getPhotoUrl(){
+        return this.photoUrl;
     }
 
-    public void setTo(String to){
-        this.to = to;
+    public void setPhotoUrl(String photoUrl){
+        this.photoUrl = photoUrl;
     }
+
 
 
 }
