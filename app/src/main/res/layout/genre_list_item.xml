@@ -31,23 +31,25 @@
                 android:layout_marginTop="18dp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/genre_cardView_check_imageView_width"
+                android:layout_height="@dimen/genre_cardView_check_imageView_height"
                 android:id="@+id/none_check_image"
                 android:src="@drawable/nonecheckbutton"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:visibility="visible"/>
+                android:visibility="visible"
+                android:layout_margin="@dimen/genre_cardView_margin"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/genre_cardView_check_imageView_width"
+                android:layout_height="@dimen/genre_cardView_check_imageView_height"
                 android:id="@+id/checked_image"
                 android:src="@drawable/checkedbutton_"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:layout_margin="@dimen/genre_cardView_margin"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

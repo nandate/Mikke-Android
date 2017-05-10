@@ -46,6 +46,7 @@
             android:layout_height="@dimen/button_layout_height"
             android:id="@+id/remove_favrite_button"
             android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+            android:layout_marginBottom="@dimen/favorite_item_more_button_marginBottom"
             android:layout_gravity="center"
             android:background="@drawable/bg_white"/>
 
@@ -55,11 +56,10 @@
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
             android:id="@+id/link_button"
-            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
             android:layout_gravity="center"
             android:background="@drawable/gradation_primal_radius"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="@dimen/favorite_item_more_marginTop"/>
+            android:layout_mrginBottom="@dimen/favorite_item_more_marginTop"/>
 
         <WebView
             android:id="@+id/web_view"
