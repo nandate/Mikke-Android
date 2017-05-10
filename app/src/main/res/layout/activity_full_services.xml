@@ -47,6 +47,10 @@
             android:id="@+id/remove_favrite_button"
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
+
+            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+            android:layout_marginBottom="@dimen/favorite_item_more_button_marginBottom"
+
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
             android:background="@drawable/bg_white"
@@ -61,8 +65,11 @@
             android:layout_marginBottom="@dimen/favorite_item_more_marginTop"
             android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
             android:background="@drawable/gradation_primal_radius"
+
             android:text="もっと詳しく"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:layout_mrginBottom="@dimen/favorite_item_more_marginTop"/>
+
 
         <WebView
             android:id="@+id/web_view"
