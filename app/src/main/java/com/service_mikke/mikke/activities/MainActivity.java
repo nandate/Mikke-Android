@@ -1,9 +1,11 @@
 package com.service_mikke.mikke.activities;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -112,6 +114,19 @@ public class MainActivity extends AppCompatActivity {
         if(id == R.id.action_profile_set){
             Intent intent = new Intent(MainActivity.this,UserSettingActivity.class);
             startActivity(intent);
+        }
+        if(id == R.id.action_reset){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage(R.string.action_reset_params_message)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            System.out.println("clicked");
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel,null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
         return super.onOptionsItemSelected(item);
     }

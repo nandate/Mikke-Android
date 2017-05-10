@@ -1,62 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
         <ImageView
-            android:layout_width="match_parent"
             android:id="@+id/full_service_logo"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/favorite_item_more_logo_height"
-            android:layout_marginTop="@dimen/favorite_item_more_marginTop"
             android:layout_marginLeft="@dimen/favorite_item_more_margin_left"
-            android:layout_marginRight="@dimen/favorite_item_more_margin_right"/>
+            android:layout_marginRight="@dimen/favorite_item_more_margin_right"
+            android:layout_marginTop="@dimen/favorite_item_more_marginTop" />
 
         <TextView
+            android:id="@+id/full_service_name"
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
-            android:id="@+id/full_service_name"
-            android:gravity="center_horizontal|center_vertical"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
-            android:textStyle="normal|bold"/>
+            android:gravity="center_horizontal|center_vertical"
+            android:textStyle="normal|bold" />
 
         <TextView
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="wrap_content"
             android:id="@+id/full_company_name"
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"/>
-
-        <TextView
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
+            android:gravity="center_horizontal|center_vertical" />
+
+        <TextView
             android:id="@+id/full_service_description"
-            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"/>
+            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
+            android:gravity="center_horizontal|center_vertical" />
 
 
         <Button
-            android:text="お気に入り解除"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="@dimen/button_layout_height"
             android:id="@+id/remove_favrite_button"
-            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="@dimen/button_layout_height"
             android:layout_gravity="center"
-            android:background="@drawable/bg_white"/>
+            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+            android:background="@drawable/bg_white"
+            android:text="お気に入り解除" />
 
 
         <Button
-            android:text="もっと詳しく"
+            android:id="@+id/link_button"
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
-            android:id="@+id/link_button"
-            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
             android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/favorite_item_more_marginTop"
+            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
             android:background="@drawable/gradation_primal_radius"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="@dimen/favorite_item_more_marginTop"/>
-</LinearLayout>
+            android:text="もっと詳しく"
+            android:textColor="@android:color/white" />
+
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></WebView>
+    </LinearLayout>
+</ScrollView>
