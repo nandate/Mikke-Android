@@ -21,6 +21,7 @@ import com.service_mikke.mikke.models.Message;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -49,7 +50,7 @@ public class NoticeFragment extends Fragment{
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mDatabase.child("messages").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("messages").orderByChild("created_at").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 getAllMessage(dataSnapshot);
@@ -72,8 +73,9 @@ public class NoticeFragment extends Fragment{
             message.setCreated_at((Long)snapshot.child("created_at").getValue());
             message.setPhotoUrl((String)snapshot.child("photoUrl").getValue());
             mDataset.add(message);
-            mAdapter = new NoticeRecyclerAdapter(mDataset);
-            mRecyclerView.setAdapter(mAdapter);
         }
+        Collections.reverse(mDataset);
+        mAdapter = new NoticeRecyclerAdapter(mDataset);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
