@@ -4,6 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
@@ -15,6 +18,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.service_mikke.mikke.R;
+import com.service_mikke.mikke.fragments.SoonFragment;
+import com.service_mikke.mikke.fragments.WebViewFragment;
 
 /**
  * Created by takuya on 4/8/17.
@@ -63,7 +68,6 @@ public class FullServicesActivity extends AppCompatActivity{
         description_view.setText(description);
 
         webView = (WebView)findViewById(R.id.web_view);
-
         link_button = (Button)findViewById(R.id.link_button);
         link_button.setOnClickListener(new View.OnClickListener() {
             @Override

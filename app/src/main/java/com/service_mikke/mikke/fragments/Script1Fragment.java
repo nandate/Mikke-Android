@@ -23,14 +23,17 @@ import com.service_mikke.mikke.adapters.ScriptPagerAdapter;
 public class Script1Fragment extends Fragment{
 
     private Button next_button;
+    private ViewPager viewPager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.script1_fragment,container,false);
+        viewPager = (ViewPager)getActivity().findViewById(R.id.script_pager);
 
         next_button = (Button)v.findViewById(R.id.script1_next_button);
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
             }
         });
 

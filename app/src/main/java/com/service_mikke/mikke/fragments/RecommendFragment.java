@@ -3,6 +3,8 @@ package com.service_mikke.mikke.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +79,12 @@ public class RecommendFragment extends Fragment{
             mDatabase.child("users").child(mUserId).child("recommends").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.getValue() == null){
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.recommend_fragment,new SoonFragment());
+                        ft.commit();
+                    }
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Service recommend = snapshot.getValue(Service.class);
                         mSwipeView.addView(new ServiceTinderCard(mContext,recommend,mSwipeView));

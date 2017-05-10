@@ -14,6 +14,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="add_item">Add New Item</string>
     <string name="action_logout">Logout</string>
+    <string name="action_reset_params_message">評価を初期化しますか？</string>
 
 
     <string name="title_activity_used_services">気になるサービスは？</string>

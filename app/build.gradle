@@ -46,6 +46,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
+
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile(name:'line-sdk-4.0.2', ext:'aar')
 
@@ -64,6 +65,7 @@ dependencies {
     compile('com.twitter.sdk.android:twitter:2.3.2@aar') {
         transitive = true;
     }
+
 }
 
 apply plugin: 'com.google.gms.google-services'
