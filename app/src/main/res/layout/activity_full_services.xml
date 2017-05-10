@@ -1,80 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <ImageView
+        android:id="@+id/full_service_logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="@dimen/favorite_item_more_logo_height"
+        android:layout_marginLeft="@dimen/favorite_item_more_margin_left"
+        android:layout_marginRight="@dimen/favorite_item_more_margin_right"
+        android:layout_marginTop="@dimen/favorite_item_more_marginTop" />
+
+    <TextView
+        android:id="@+id/full_service_name"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
+        android:gravity="center_horizontal|center_vertical"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/full_company_name"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
+        android:gravity="center_horizontal|center_vertical" />
+
+    <TextView
+        android:id="@+id/full_service_description"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
+        android:gravity="center_horizontal|center_vertical" />
 
 
-        <ImageView
-            android:id="@+id/full_service_logo"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/favorite_item_more_logo_height"
-            android:layout_marginLeft="@dimen/favorite_item_more_margin_left"
-            android:layout_marginRight="@dimen/favorite_item_more_margin_right"
-            android:layout_marginTop="@dimen/favorite_item_more_marginTop" />
-
-        <TextView
-            android:id="@+id/full_service_name"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
-            android:gravity="center_horizontal|center_vertical"
-            android:textStyle="normal|bold" />
-
-        <TextView
-            android:id="@+id/full_company_name"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/full_service_description"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/favorite_item_more_textView_marginTop"
-            android:gravity="center_horizontal|center_vertical" />
+    <Button
+        android:id="@+id/remove_favrite_button"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/favorite_item_more_button_marginBottom"
+        android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
+        android:background="@drawable/bg_white"
+        android:text="お気に入り解除" />
 
 
-        <Button
-            android:id="@+id/remove_favrite_button"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="@dimen/button_layout_height"
+    <Button
+        android:id="@+id/link_button"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/favorite_item_more_marginTop"
+        android:background="@drawable/gradation_primal_radius"
+        android:text="もっと詳しく"
+        android:textColor="@android:color/white" />
 
-            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
-            android:layout_marginBottom="@dimen/favorite_item_more_button_marginBottom"
-
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
-            android:background="@drawable/bg_white"
-            android:text="お気に入り解除" />
-
-
-        <Button
-            android:id="@+id/link_button"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="@dimen/button_layout_height"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/favorite_item_more_marginTop"
-            android:layout_marginTop="@dimen/favorite_item_more_button_marginTop"
-            android:background="@drawable/gradation_primal_radius"
-
-            android:text="もっと詳しく"
-            android:textColor="@android:color/white"
-            android:layout_mrginBottom="@dimen/favorite_item_more_marginTop"/>
-
-
-        <WebView
-            android:id="@+id/web_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></WebView>
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
