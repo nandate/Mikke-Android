@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(
+                getString(R.string.twitter_key), getString(R.string.twitter_secret));
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
 
         tabLayout = (TabLayout)findViewById(R.id.tab_layout);
@@ -105,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
         int id=item.getItemId();
         if(id == R.id.action_logout){
             mFirebaseAuth.signOut();
+
+            //facebook logout
+            LoginManager.getInstance().logOut();
+
+            //twitter logout
+            Twitter.logOut();
             loadLogInView();
         }
         if(id == R.id.action_profile_set){
