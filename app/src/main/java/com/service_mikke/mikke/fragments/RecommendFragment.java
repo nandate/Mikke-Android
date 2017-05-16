@@ -58,6 +58,8 @@ public class RecommendFragment extends Fragment{
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mUserId =mFirebaseUser.getUid();
 
+        final DatabaseReference recommend_ref = mDatabase.child("users").child(mUserId).child("recommends");
+
 
         mSwipeView.getBuilder()
                 .setDisplayViewCount(1)
@@ -69,14 +71,13 @@ public class RecommendFragment extends Fragment{
         mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
             @Override
             public void onItemRemoved(int count) {
-                if(count == 0){
-                    mDatabase.child("users").child(mUserId).child("recommends").removeValue();
-                }
+                recommend_ref.child(String.valueOf(2-count)).removeValue();
+                System.out.println(count);
             }
         });
 
         try{
-            mDatabase.child("users").child(mUserId).child("recommends").addListenerForSingleValueEvent(new ValueEventListener() {
+            recommend_ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.getValue() == null){

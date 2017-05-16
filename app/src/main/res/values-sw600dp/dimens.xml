@@ -45,7 +45,7 @@
     <dimen name="favorite_item_more_marginTop">40dp</dimen>
     <dimen name="favorite_item_more_marginBottom">15dp</dimen>
     <dimen name="favorite_item_more_textView_marginTop">10dp</dimen>
-    <dimen name="favorite_item_more_button_marginTop">400dp</dimen>
+    <dimen name="favorite_item_more_button_marginTop">40dp</dimen>
     <dimen name="favorite_item_more_button_marginBottom">20dp</dimen>
 
     <dimen name="cardView_radius">5dp</dimen>

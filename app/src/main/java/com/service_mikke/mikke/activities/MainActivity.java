@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -24,9 +25,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "	TYxLsESiluERfpvy2wEnBhHpe";
-    private static final String TWITTER_SECRET = "	5E2rSYkJgZrUCi2biP5sdNIzyPBhFESMu0ea6GdcDExub9isZZ";
 
 
     private FirebaseAuth mFirebaseAuth;
@@ -42,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(
+                getString(R.string.twitter_key), getString(R.string.twitter_secret));
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
 
@@ -109,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
         int id=item.getItemId();
         if(id == R.id.action_logout){
             mFirebaseAuth.signOut();
+
+            //facebook logout
+            LoginManager.getInstance().logOut();
+
+            //twitter logout
+            Twitter.logOut();
             loadLogInView();
         }
         if(id == R.id.action_profile_set){

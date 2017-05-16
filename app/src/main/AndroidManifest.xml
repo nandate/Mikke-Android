@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="Mikke!"
         android:theme="@style/AppTheme"
         android:largeHeap="true">
@@ -19,7 +19,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="d1eeeec3ff151a340b2a85306c0057dffc06a5f3" />
+            android:value="@string/twitter_api_key" />
 
         <activity
             android:name=".activities.MainActivity"
@@ -54,6 +54,10 @@
         </activity>
 
         <activity
+            android:name=".activities.WebViewActivity">
+        </activity>
+
+        <activity
             android:name=".activities.MessageDetailActivity">
         </activity>
         <activity
@@ -68,6 +72,8 @@
             android:name=".activities.SignUpActivity"
             android:label="Sign Up">
         </activity>
+
+
 
     </application>
 
