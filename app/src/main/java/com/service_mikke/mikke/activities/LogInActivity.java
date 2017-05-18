@@ -25,6 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.TwitterAuthProvider;
+import com.linecorp.linesdk.auth.LineLoginApi;
 import com.service_mikke.mikke.R;
 
 import com.facebook.FacebookSdk;
@@ -51,6 +52,7 @@ public class LogInActivity  extends AppCompatActivity {
     private TwitterLoginButton mTwitterLoginButton;
     private CallbackManager mFacebookCallbackManager;
     private AccessTokenTracker mFacebookAccessTokenTracker;
+
 
 
     @Override

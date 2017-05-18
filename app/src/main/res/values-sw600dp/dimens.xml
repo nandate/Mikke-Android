@@ -20,7 +20,6 @@
 
     <dimen name="activity_main_menuBar">60dp</dimen>
 
-
     <dimen name="profile_edit_textArea_marginTop">15dp</dimen>
     <dimen name="profile_edit_gender_marginLeft">20dp</dimen>
     <dimen name="profile_edit_button_marginTop">40dp</dimen>
