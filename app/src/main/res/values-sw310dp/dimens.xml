@@ -11,7 +11,10 @@
     <dimen name="button_layout_width">280dp</dimen>
     <dimen name="button_layout_height">50dp</dimen>
 
+
     <dimen name="activity_genre_marginBottom">30dp</dimen>
+
+    <dimen name="activity_main_menuBar">60dp</dimen>
 
     <dimen name="login_textArea_marginTop">15dp</dimen>
     <dimen name="login_button_marginTop">15dp</dimen>
@@ -43,6 +46,7 @@
     <dimen name="favorite_item_more_marginBottom">15dp</dimen>
     <dimen name="favorite_item_more_textView_marginTop">10dp</dimen>
     <dimen name="favorite_item_more_button_marginTop">15dp</dimen>
+    <dimen name="favorite_item_more_button_marginBottom">20dp</dimen>
 
 
     <dimen name="cardView_radius">5dp</dimen>
