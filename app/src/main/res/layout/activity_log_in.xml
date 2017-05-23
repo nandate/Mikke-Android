@@ -103,12 +103,26 @@
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
         android:id="@+id/tw_loginButton"
         android:layout_width="@dimen/button_layout_width"
-        android:layout_height="@dimen/button_layout_height"
+        android:layout_height="25dp"
         android:layout_below="@+id/fb_loginButton"
         android:layout_marginTop="@dimen/login_textArea_marginTop"
         android:layout_alignLeft="@+id/fb_loginButton"
         android:layout_alignStart="@+id/fb_loginButton"
         android:layout_alignRight="@+id/fb_loginButton"
         android:layout_alignEnd="@+id/fb_loginButton"/>
+
+    <Button
+        android:id="@+id/line_loginButton"
+        android:text="Log in with LINE"
+        android:textColor="@android:color/white"
+        android:background="@color/colorLINE"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tw_loginButton"
+        android:layout_marginTop="@dimen/login_textArea_marginTop"
+        android:layout_alignLeft="@+id/tw_loginButton"
+        android:layout_alignStart="@+id/tw_loginButton"
+        android:layout_alignRight="@+id/tw_loginButton"
+        android:layout_alignEnd="@+id/tw_loginButton"/>
 
 </RelativeLayout>

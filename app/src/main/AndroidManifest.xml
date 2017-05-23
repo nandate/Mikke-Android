@@ -19,7 +19,17 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="@string/twitter_api_key" />
+            android:value="d1eeeec3ff151a340b2a85306c0057dffc06a5f3" />
+
+        <meta-data
+            android:name="jp.line.sdk.ChannelId"
+            android:value="@string/line_channelId">
+        </meta-data>
+
+        <meta-data
+            android:name="jp.line.sdk.AuthScheme"
+            android:value="line.{{line_channelId}}">
+        </meta-data>
 
         <activity
             android:name=".activities.MainActivity"
@@ -68,6 +78,27 @@
             android:name=".activities.LogInActivity"
             android:label="ログイン">
         </activity>
+
+        <activity
+            android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity"
+            android:configChanges="keyboard|orientation"
+            android:exported="true"
+            android:screenOrientation="sensor" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="line.{{line_channelId}}" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="jp.line.android.sdk.activity.WebLoginActivity"
+            android:configChanges="keyboard|orientation"
+            android:exported="false"
+            android:screenOrientation="sensor" >
+        </activity>
+
+
         <activity
             android:name=".activities.SignUpActivity"
             android:label="Sign Up">

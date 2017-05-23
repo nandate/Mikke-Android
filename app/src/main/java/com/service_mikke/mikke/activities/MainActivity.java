@@ -19,9 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.PagerAdapter;
+import com.service_mikke.mikke.helpers.LineLoginHelper;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
+import jp.line.android.sdk.LineSdkContextManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        LineSdkContextManager.initialize(this);
         if(mFirebaseUser == null){
             loadLogInView();
         }else {
@@ -115,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
             //twitter logout
             Twitter.logOut();
+
+            LineSdkContextManager.getSdkContext().getAuthManager().logout();
             loadLogInView();
         }
         if(id == R.id.action_profile_set){
