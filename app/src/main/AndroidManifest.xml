@@ -19,7 +19,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="d1eeeec3ff151a340b2a85306c0057dffc06a5f3" />
+            android:value="@string/twitter_api_key" />
 
         <meta-data
             android:name="jp.line.sdk.ChannelId"

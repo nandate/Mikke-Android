@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,21 +34,40 @@ public class MyPageFragment extends Fragment{
     private FirebaseUser mFirebaseUser;
     private String mUserId;
 
+    private TextView username_textView;
     private RecyclerView favorite_recycler_view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.mypage_fragment,container,false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mUserId = mFirebaseUser.getUid();
 
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(mUserId);
+
+
+
+        username_textView = (TextView)v.findViewById(R.id.user_name);
+        mDatabase.child("user_name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String user_name = dataSnapshot.getValue(String.class);
+                username_textView.setText(user_name);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         favorite_recycler_view = (RecyclerView)v.findViewById(R.id.favorite_recyclerView);
 
-        FavoriteRecyclerAdapter mAdapter = new FavoriteRecyclerAdapter(mDatabase.child("users").child(mUserId).child("fav"));
+        FavoriteRecyclerAdapter mAdapter = new FavoriteRecyclerAdapter(mDatabase.child("fav"));
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
 
