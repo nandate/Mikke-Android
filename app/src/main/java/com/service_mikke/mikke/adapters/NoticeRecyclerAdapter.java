@@ -13,6 +13,11 @@ import android.widget.TextView;
 
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.service_mikke.mikke.R;
@@ -91,6 +96,7 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
 
         @Override
         public void onClick(View view){
+
             Intent intent = new Intent(view.getContext(), MessageDetailActivity.class);
             intent.putExtra("title",title);
             intent.putExtra("content",content);

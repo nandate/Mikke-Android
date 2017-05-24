@@ -47,7 +47,7 @@
         android:id="@+id/signUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tw_loginButton"
+        android:layout_below="@+id/line_loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/login_textView_marginTop"
         tools:text="＞はじめての方"

@@ -18,6 +18,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
@@ -36,9 +38,7 @@ public class RecommendFragment extends Fragment{
     private SwipePlaceHolderView mSwipeView;
     private Context mContext;
 
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
-    private DatabaseReference mDatabase;
+    private DatabaseReference recommend_ref;
     private String mUserId;
 
     private Button like_button;
@@ -53,13 +53,10 @@ public class RecommendFragment extends Fragment{
         mSwipeView = (SwipePlaceHolderView)v.findViewById(R.id.recommend_swipeView);
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mUserId =mFirebaseUser.getUid();
+        mUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final DatabaseReference recommend_ref = mDatabase.child("users").child(mUserId).child("recommends");
+        recommend_ref = FirebaseDatabase.getInstance().getReference().child("users").child(mUserId).child("recommends");
 
 
         mSwipeView.getBuilder()
@@ -69,27 +66,19 @@ public class RecommendFragment extends Fragment{
                         .setRelativeScale(0.01f));
 
         mSwipeView.getScrollBarSize();
-        mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
+        /*mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
             @Override
             public void onItemRemoved(int count) {
-                recommend_ref.child(String.valueOf(2-count)).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChildren()){
-                            dataSnapshot.getRef().removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
+                String index = String.valueOf(2-count);
+                recommend_ref.child(index).removeValue();
             }
         });
+        */
+
 
         try{
+
+
             recommend_ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -109,6 +98,9 @@ public class RecommendFragment extends Fragment{
 
                 }
             });
+
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -121,6 +113,7 @@ public class RecommendFragment extends Fragment{
                 mSwipeView.doSwipe(false);
             }
         });
+
 
         dislike_button = (Button)v.findViewById(R.id.dislike_button);
         dislike_button.setOnClickListener(new View.OnClickListener(){
