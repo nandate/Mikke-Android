@@ -29,9 +29,7 @@ import java.util.List;
 
 public class MyPageFragment extends Fragment{
 
-    private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabase;
-    private FirebaseUser mFirebaseUser;
     private String mUserId;
 
     private TextView username_textView;
@@ -42,9 +40,7 @@ public class MyPageFragment extends Fragment{
         View v = inflater.inflate(R.layout.mypage_fragment,container,false);
 
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mUserId = mFirebaseUser.getUid();
+        mUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(mUserId);

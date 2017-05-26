@@ -88,7 +88,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="line.{{line_channelId}}" />
+                <data android:scheme="line.{{line_channelId}}"/>
             </intent-filter>
         </activity>
         <activity

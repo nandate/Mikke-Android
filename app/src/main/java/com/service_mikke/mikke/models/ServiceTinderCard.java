@@ -201,7 +201,6 @@ public class ServiceTinderCard {
                     firstChild.getRef().removeValue();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }

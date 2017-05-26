@@ -66,14 +66,15 @@ public class RecommendFragment extends Fragment{
                         .setRelativeScale(0.01f));
 
         mSwipeView.getScrollBarSize();
-        /*mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
+        mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
             @Override
             public void onItemRemoved(int count) {
-                String index = String.valueOf(2-count);
-                recommend_ref.child(index).removeValue();
+                if(count == 0){
+                    recommend_ref.removeValue();
+                }
             }
         });
-        */
+
 
 
         try{
@@ -95,6 +96,7 @@ public class RecommendFragment extends Fragment{
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+                    System.out.println(databaseError);
 
                 }
             });
