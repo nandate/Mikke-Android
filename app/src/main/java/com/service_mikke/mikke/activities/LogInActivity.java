@@ -193,6 +193,7 @@ public class LogInActivity  extends AppCompatActivity {
 
     }
 
+
     private void handleFacebookAccessToken(AccessToken token){
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth = FirebaseAuth.getInstance();

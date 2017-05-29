@@ -117,7 +117,7 @@
         android:textColor="@android:color/white"
         android:background="@color/colorLINE"
         android:layout_width="@dimen/button_layout_width"
-        android:layout_height="25dp"
+        android:layout_height="26dp"
         android:layout_below="@+id/tw_loginButton"
         android:layout_marginTop="@dimen/login_textArea_marginTop"
         android:layout_alignLeft="@+id/tw_loginButton"

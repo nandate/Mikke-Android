@@ -126,19 +126,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this,UserSettingActivity.class);
             startActivity(intent);
         }
-        if(id == R.id.action_reset){
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage(R.string.action_reset_params_message)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            System.out.println("clicked");
-                        }
-                    })
-                    .setNegativeButton(android.R.string.cancel,null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
         return super.onOptionsItemSelected(item);
     }
 }

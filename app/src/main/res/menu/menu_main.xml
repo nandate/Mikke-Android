@@ -12,13 +12,6 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_reset"
-        android:orderInCategory="100"
-        android:title="評価の初期化"
-        app:showAsAction="never"/>
-
-
-    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="ログアウト"
