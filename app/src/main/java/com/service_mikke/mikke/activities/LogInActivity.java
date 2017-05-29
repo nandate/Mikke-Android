@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -20,20 +26,32 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeResult;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.TwitterAuthProvider;
-import com.linecorp.linesdk.auth.LineLoginApi;
+import com.google.gson.JsonObject;
 import com.service_mikke.mikke.R;
 
 import com.facebook.FacebookSdk;
+import com.service_mikke.mikke.helpers.LineLoginHelper;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+import jp.line.android.sdk.LineSdkContext;
+import jp.line.android.sdk.LineSdkContextManager;
+import jp.line.android.sdk.login.LineAuthManager;
+import jp.line.android.sdk.login.LineLoginFuture;
+
 
 /**
  * Created by takuya on 3/17/17.
@@ -50,9 +68,10 @@ public class LogInActivity  extends AppCompatActivity {
 
     private LoginButton mFacebookLoginButton;
     private TwitterLoginButton mTwitterLoginButton;
+    private Button mLineLoginButton;
     private CallbackManager mFacebookCallbackManager;
-    private AccessTokenTracker mFacebookAccessTokenTracker;
 
+    private LineLoginHelper mLineLoginHelper;
 
 
     @Override
@@ -107,6 +126,21 @@ public class LogInActivity  extends AppCompatActivity {
             }
         });
 
+        //Line
+        mLineLoginHelper = new LineLoginHelper(this);
+        mLineLoginButton = (Button)findViewById(R.id.line_loginButton);
+
+        mLineLoginButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onTapLineLogin();
+
+            }
+        });
+
+
+
+
 
 
         signUpTextView.setOnClickListener(new View.OnClickListener(){
@@ -159,6 +193,7 @@ public class LogInActivity  extends AppCompatActivity {
 
     }
 
+
     private void handleFacebookAccessToken(AccessToken token){
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -205,6 +240,27 @@ public class LogInActivity  extends AppCompatActivity {
                                     .setPositiveButton(android.R.string.ok,null);
                             AlertDialog dialog = builder.create();
                             dialog.show();
+                        }
+                    }
+                });
+    }
+
+    private void onTapLineLogin(){
+        mLineLoginHelper
+                .startLineLogin()
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.d("line","LINE Login was successful.");
+                            System.out.println(task);
+                            Intent intent = new Intent(LogInActivity.this,MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+                        }else{
+                            Log.e("line","error");
                         }
                     }
                 });

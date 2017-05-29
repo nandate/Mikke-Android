@@ -1,6 +1,7 @@
 package com.service_mikke.mikke.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -9,11 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,18 +26,24 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.TwitterAuthProvider;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.service_mikke.mikke.R;
+import com.service_mikke.mikke.helpers.LineLoginHelper;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -55,6 +65,9 @@ public class SignUpActivity extends AppCompatActivity{
     private TwitterLoginButton mTwitterLoginButton;
 
     private HashMap<String,Integer> tags = new HashMap<>();
+
+    private Button mLineLoginButton;
+    private LineLoginHelper mLineLoginHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -146,6 +159,18 @@ public class SignUpActivity extends AppCompatActivity{
         });
 
 
+        mLineLoginHelper = new LineLoginHelper(this);
+        mLineLoginButton = (Button)findViewById(R.id.line_signupButton);
+
+        mLineLoginButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onTapLineLogin();
+
+            }
+        });
+
+
     }
 
     private void createUser(final DatabaseReference mDatabase,final String userId){
@@ -168,6 +193,47 @@ public class SignUpActivity extends AppCompatActivity{
     }
 
 
+    private void CreateSocialUser(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                String providerId = profile.getProviderId();
+
+                // UID specific to the provider
+                String uid = profile.getUid();
+
+                // Name, email address, and profile photo Url
+                String name = profile.getDisplayName();
+                String photoUrl = profile.getPhotoUrl().toString();
+
+                System.out.println(uid);
+                System.out.println(name);
+                System.out.println(photoUrl);
+
+                mDatabase.child("users").child(uid).child("user_name").setValue(name);
+                mDatabase.child("users").child(uid).child("photo_url").setValue(photoUrl);
+            };
+
+            mDatabase.child("tags").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot tagsSnapshot:dataSnapshot.getChildren()){
+                        tags.put(tagsSnapshot.getValue(String.class),0);
+                    }
+                    mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tags_point").setValue(tags);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+    }
+
+
     private void handleFacebookAccessToken(AccessToken token){
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -176,7 +242,7 @@ public class SignUpActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            createUser(FirebaseDatabase.getInstance().getReference(),task.getResult().getUser().getUid());
+                            CreateSocialUser();
                             Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -204,7 +270,7 @@ public class SignUpActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            createUser(FirebaseDatabase.getInstance().getReference(),task.getResult().getUser().getUid());
+                            CreateSocialUser();
                             Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -217,6 +283,26 @@ public class SignUpActivity extends AppCompatActivity{
                                     .setPositiveButton(android.R.string.ok,null);
                             AlertDialog dialog = builder.create();
                             dialog.show();
+                        }
+                    }
+                });
+    }
+
+    private void onTapLineLogin(){
+        mLineLoginHelper
+                .startLineLogin()
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.d("line","LINE Login was successful.");
+                            CreateSocialUser();
+                            Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }else{
+                            Log.e("line","error");
                         }
                     }
                 });

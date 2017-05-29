@@ -19,9 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.PagerAdapter;
+import com.service_mikke.mikke.helpers.LineLoginHelper;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
+import jp.line.android.sdk.LineSdkContextManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        LineSdkContextManager.initialize(this);
         if(mFirebaseUser == null){
             loadLogInView();
         }else {
@@ -115,24 +118,13 @@ public class MainActivity extends AppCompatActivity {
 
             //twitter logout
             Twitter.logOut();
+
+            LineSdkContextManager.getSdkContext().getAuthManager().logout();
             loadLogInView();
         }
         if(id == R.id.action_profile_set){
             Intent intent = new Intent(MainActivity.this,UserSettingActivity.class);
             startActivity(intent);
-        }
-        if(id == R.id.action_reset){
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage(R.string.action_reset_params_message)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            System.out.println("clicked");
-                        }
-                    })
-                    .setNegativeButton(android.R.string.cancel,null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
         }
         return super.onOptionsItemSelected(item);
     }
