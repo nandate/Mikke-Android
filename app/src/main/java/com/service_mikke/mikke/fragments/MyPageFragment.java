@@ -1,5 +1,6 @@
 package com.service_mikke.mikke.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,9 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.adapters.FavoriteRecyclerAdapter;
 import com.service_mikke.mikke.models.Service;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.InputStream;
+
 
 /**
  * Created by takuya on 3/17/17.
@@ -33,6 +36,7 @@ public class MyPageFragment extends Fragment{
     private String mUserId;
 
     private TextView username_textView;
+    private ImageView user_icon_imageView;
     private RecyclerView favorite_recycler_view;
 
     @Override
@@ -46,6 +50,26 @@ public class MyPageFragment extends Fragment{
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(mUserId);
 
 
+        user_icon_imageView = (ImageView)v.findViewById(R.id.user_icon);
+        mDatabase.child("photo_url").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue() == null){
+
+                    int identifier = getContext().getResources().getIdentifier("profile_image_blank","drawable",getContext().getPackageName());
+                    user_icon_imageView.setImageResource(identifier);
+
+                }else{
+                    String photo_url = dataSnapshot.getValue(String.class);
+                    Picasso.with(getContext()).load(photo_url).into(user_icon_imageView);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         username_textView = (TextView)v.findViewById(R.id.user_name);
         mDatabase.child("user_name").addValueEventListener(new ValueEventListener() {
