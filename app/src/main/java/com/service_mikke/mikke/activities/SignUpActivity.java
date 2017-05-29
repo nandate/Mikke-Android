@@ -1,6 +1,7 @@
 package com.service_mikke.mikke.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -25,7 +26,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.TwitterAuthProvider;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -127,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity{
         mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                getUserInfo(loginResult);
+                handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
@@ -162,6 +165,7 @@ public class SignUpActivity extends AppCompatActivity{
         mLineLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                onTapLineLogin();
 
             }
         });
@@ -188,55 +192,49 @@ public class SignUpActivity extends AppCompatActivity{
 
     }
 
-    private void getUserInfo(final LoginResult loginResult){
-        GraphRequest data_request = GraphRequest.newMeRequest(
-                loginResult.getAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback(){
-                    @Override
-                    public void onCompleted(
-                            JSONObject object,
-                            GraphResponse response){
-                        try{
-                            String name = object.getString("name");
-                            String token = loginResult.getAccessToken().getToken();
-                            String picUrl = "https://graph.facebook.com/me/picture?type=normal&method=GET&access_token="+ token;
-                            handleFacebookAccessToken(loginResult.getAccessToken(),name,picUrl);
-                        }catch (JSONException e){
-                            System.out.println(e);
-                        }
+
+    private void CreateSocialUser(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                String providerId = profile.getProviderId();
+
+                // UID specific to the provider
+                String uid = profile.getUid();
+
+                // Name, email address, and profile photo Url
+                String name = profile.getDisplayName();
+                String photoUrl = profile.getPhotoUrl().toString();
+
+                System.out.println(uid);
+                System.out.println(name);
+                System.out.println(photoUrl);
+
+                mDatabase.child("users").child(uid).child("user_name").setValue(name);
+                mDatabase.child("users").child(uid).child("photo_url").setValue(photoUrl);
+            };
+
+            mDatabase.child("tags").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot tagsSnapshot:dataSnapshot.getChildren()){
+                        tags.put(tagsSnapshot.getValue(String.class),0);
                     }
-                });
-
-        Bundle permission_param = new Bundle();
-        permission_param.putString("fields", "id,name,email,picture.width(120).height(120)");
-        data_request.setParameters(permission_param);
-        data_request.executeAsync();
-        data_request.executeAsync();
-    }
-
-    private void createFBUser(final DatabaseReference mDatabase,final String uid,final String name,final String photoUrl){
-        mDatabase.child("users").child(uid).child("user_name").setValue(name);
-        mDatabase.child("users").child(uid).child("photo_url").setValue(photoUrl);
-        mDatabase.child("tags").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot tagsSnapshot:dataSnapshot.getChildren()){
-                    tags.put(tagsSnapshot.getValue(String.class),0);
+                    mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("tags_point").setValue(tags);
                 }
-                mDatabase.child("users").child(uid).child("tags_point").setValue(tags);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-
+                }
+            });
+        }
 
     }
 
 
-    private void handleFacebookAccessToken(AccessToken token, final String name, final String photoUrl){
+    private void handleFacebookAccessToken(AccessToken token){
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuth.signInWithCredential(credential)
@@ -244,7 +242,7 @@ public class SignUpActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            createFBUser(FirebaseDatabase.getInstance().getReference(),task.getResult().getUser().getUid(),name,photoUrl);
+                            CreateSocialUser();
                             Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -272,7 +270,7 @@ public class SignUpActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            createUser(FirebaseDatabase.getInstance().getReference(),task.getResult().getUser().getUid());
+                            CreateSocialUser();
                             Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -298,12 +296,11 @@ public class SignUpActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Log.d("line","LINE Login was successful.");
-                            System.out.println(task);
+                            CreateSocialUser();
                             Intent intent = new Intent(SignUpActivity.this,GenresActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-
                         }else{
                             Log.e("line","error");
                         }
