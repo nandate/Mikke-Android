@@ -16,7 +16,6 @@
         android:layout_width="@dimen/button_layout_width"
         android:layout_height="@dimen/button_layout_height"
         android:inputType="textPersonName"
-        android:text="username"
         android:ems="10"
         android:id="@+id/editText"
         android:background="@drawable/bg_white_30"
@@ -79,8 +78,9 @@
         android:layout_marginTop="@dimen/profile_edit_textArea_marginTop"/>
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:id="@+id/spinner2" />
 
     <Button

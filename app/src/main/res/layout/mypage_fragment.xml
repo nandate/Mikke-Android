@@ -43,7 +43,6 @@
                 android:id="@+id/user_icon"
                 android:layout_width="@dimen/mypage_circleView_width"
                 android:layout_height="@dimen/mypage_circleView_height"
-                android:src="@drawable/profile_image_blank"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/mypage_circleView_marginTop"/>
 
