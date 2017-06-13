@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@drawable/gradation_primal">
+    android:gravity="center">
+
 
     <ImageView
-        android:layout_width="@dimen/script_white_circle_width"
-        android:layout_height="@dimen/script_white_circle_height"
-        android:src="@drawable/logo1"/>
+        android:layout_width="50dp"
+        android:layout_height="154dp"
+        app:srcCompat="@drawable/splash_icon"
+        android:id="@+id/imageView7"
+        android:layout_marginTop="-50dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="明日の７時にお会いしましょう"
-        android:textSize="@dimen/normal_textSize"/>
+        android:text="毎朝7時にマッチング中..."
+        android:textSize="@dimen/normal_textSize"
+        android:textStyle="normal|bold" />
 
 </LinearLayout>

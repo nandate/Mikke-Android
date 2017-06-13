@@ -10,72 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/script2_background"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:src="@drawable/script2_back"
-            android:scaleType="centerCrop"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/dark_grass"
+            app:srcCompat="@color/colorPrimary"
             android:id="@+id/imageView4" />
-
-        <TextView
-            android:text="ヒマなときにのぞいてみてください"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/script_margintTop"
-            android:id="@+id/textView5"
-            android:textColor="@android:color/white"
-            android:textStyle="normal|bold" />
-
-        <ImageView
-            android:layout_width="@dimen/script_white_circle_width"
-            android:layout_height="@dimen/script_white_circle_height"
-            app:srcCompat="@drawable/circl"
-            android:id="@+id/imageView2"
-            android:layout_below="@+id/textView5"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/script_white_circle_marginTop" />
-
-        <ImageView
-            android:id="@+id/send_icon"
-            android:layout_width="@dimen/script_icon_layout_width"
-            android:layout_height="@dimen/script_icon_layout_height"
-            android:src="@drawable/send"
-            android:layout_marginBottom="@dimen/script_icon_marginTop"
-            android:layout_alignBottom="@+id/imageView2"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:text="毎日決まった時間にアプリ・Webサービス情報をお届けします。時間があったらのぞいてみてください。"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/script2_description"
-            android:textColor="#FFFFFF"
-            android:textSize="@dimen/normal_textSize"
-            android:textAlignment="center"
-            android:layout_above="@+id/script2_next_button"
-            android:layout_marginBottom="@dimen/script_textView_marginBottom"
-            android:layout_alignLeft="@+id/textView5"
-            android:layout_alignStart="@+id/textView5"
-            android:layout_alignRight="@+id/textView5"
-            android:layout_alignEnd="@+id/textView5" />
 
         <Button
             android:id="@+id/script2_next_button"
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
-            android:background="@drawable/gradation_border"
+            android:background="@drawable/button"
             android:text="次へ"
             android:textSize="@dimen/normal_textSize"
             android:textColor="#FFFFFF"
@@ -86,6 +32,38 @@
             android:layout_marginBottom="@dimen/script_button_marginBottom"
             android:layout_alignRight="@+id/script2_description"
             android:layout_alignEnd="@+id/script2_description" />
+
+        <TextView
+            android:text="コンシェルジュ機能"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/all_script_marginTop"
+            android:id="@+id/textView4"
+            android:textColor="@android:color/white"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/script_2_pic2_height"
+            app:srcCompat="@drawable/pic2"
+            android:id="@+id/imageView2"
+            android:layout_above="@+id/script2_description"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/script_2_marginBottom" />
+
+        <TextView
+            android:text="チャットで聞いてみてください。今探しているアプリ・Webサービスをご提案します。"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/script2_description"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/normal_textSize"
+            android:textAlignment="center"
+            android:layout_marginBottom="26dp"
+            android:layout_above="@+id/script2_next_button"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
