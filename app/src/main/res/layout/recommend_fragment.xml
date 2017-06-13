@@ -7,47 +7,45 @@
     android:layout_height="match_parent">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/like_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/recommend_fragment_layout_height"
+            android:layout_weight="0.5"
+            android:background="#00BCD4"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="ミッケ!"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/title_textSize"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/dislike_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/recommend_fragment_layout_height"
+            android:layout_toRightOf="@+id/like_button"
+            android:layout_weight="0.5"
+            android:background="#E91E63"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="興味なし"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/title_textSize"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <com.mindorks.placeholderview.SwipePlaceHolderView
         android:id="@+id/recommend_swipeView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.mindorks.placeholderview.SwipePlaceHolderView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/recommend_fragment_layout_height"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.AppCompatButton
-            android:text="ミッケ!"
-            android:layout_width="@dimen/recommend_fragment_button_width"
-            android:layout_height="@dimen/recommend_fragment_button_height"
-            android:id="@+id/like_button"
-            android:textColor="#00BCD4"
-            android:background="@drawable/recommend_button"
-            android:elevation="4dp"
-            android:layout_margin="16dp"
-            android:textSize="@dimen/title_textSize"
-            android:gravity="center_vertical|center_horizontal|center"/>
-
-        <android.support.v7.widget.AppCompatButton
-            android:text="興味なし"
-            android:layout_width="@dimen/recommend_fragment_button_width"
-            android:layout_height="@dimen/recommend_fragment_button_height"
-            android:id="@+id/dislike_button"
-            android:textColor="#E91E63"
-            android:background="@drawable/recommend_button"
-            android:elevation="4dp"
-            android:layout_marginLeft="@dimen/recommend_fragment_marginLeft"
-            android:layout_toRightOf="@+id/like_button"
-            android:textSize="@dimen/title_textSize"
-            android:gravity="center_vertical|center_horizontal|center"/>
-
-    </LinearLayout>
+        android:layout_height="match_parent"></com.mindorks.placeholderview.SwipePlaceHolderView>
 
 
 </FrameLayout>

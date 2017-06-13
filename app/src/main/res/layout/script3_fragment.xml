@@ -10,95 +10,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/script3_background"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:src="@drawable/script3_back"
-            android:scaleType="centerCrop"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
 
         <ImageView
+            android:id="@+id/imageView5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/dark_grass"
-            android:id="@+id/imageView5" />
+            app:srcCompat="@color/colorPrimary" />
 
-
-        <TextView
-            android:text="なんとなくな好みを教えてください"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:textStyle="normal|bold"
-            android:textColor="@android:color/white"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/script_margintTop" />
 
         <TextView
             android:id="@+id/script3_description"
-            android:text="なんとなく興味あるかないかを教えてください。あなたの好みを知りたいんです。"
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="@dimen/normal_textSize"
-            android:textAlignment="center"
             android:layout_above="@+id/signup_button"
-            android:layout_marginBottom="@dimen/script_textView_marginBottom"
-            android:layout_alignLeft="@+id/textView6"
-            android:layout_alignStart="@+id/textView6"
-            android:layout_alignRight="@+id/textView6"
-            android:layout_alignEnd="@+id/textView6" />
-
-        <ImageView
-            android:layout_width="@dimen/script_white_circle_width"
-            android:layout_height="@dimen/script_white_circle_height"
-            app:srcCompat="@drawable/circl"
-            android:id="@+id/imageView6"
-            android:layout_marginTop="@dimen/script_white_circle_marginTop"
-            android:layout_below="@+id/textView6"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:text="ログイン"
-            android:layout_width="@dimen/button_layout_width"
-            android:layout_height="@dimen/button_layout_height"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/script_button_marginBottom"
-            android:background="@drawable/bg_white"
-            android:id="@+id/login_button"
             android:layout_alignLeft="@+id/signup_button"
             android:layout_alignStart="@+id/signup_button"
-            android:layout_alignRight="@+id/signup_button"
-            android:layout_alignEnd="@+id/signup_button"
-            android:textColor="#757575" />
+            android:layout_marginBottom="28dp"
+            android:text="あなたがミッケ！したアプリ・Webサービスはマイページにクリップされます。いつでも過去のクリップを確認できます。コレクションを増やしましょう。"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/normal_textSize" />
 
-        <ImageView
-            android:id="@+id/heart_icon"
-            android:layout_width="@dimen/script_icon_layout_width"
-            android:layout_height="@dimen/script_icon_layout_height"
-            android:src="@drawable/heart"
-            android:layout_alignTop="@+id/imageView6"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/script_icon_marginTop" />
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="@dimen/button_layout_height"
+            android:layout_alignEnd="@+id/signup_button"
+            android:layout_alignLeft="@+id/signup_button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/signup_button"
+            android:layout_alignStart="@+id/signup_button"
+            android:layout_marginBottom="@dimen/script_button_marginBottom"
+            android:background="@drawable/bg_white"
+            android:text="ログイン"
+            android:textColor="#757575" />
 
         <Button
             android:id="@+id/signup_button"
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
-            android:background="@drawable/gradation_border"
-            android:text="はじめよう"
-            android:textSize="@dimen/normal_textSize"
-            android:textColor="#FFFFFF"
-            android:textAlignment="center"
-            android:layout_marginBottom="@dimen/script_start_button_marginBottom"
             android:layout_above="@+id/login_button"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/script_start_button_marginBottom"
+            android:background="@drawable/button"
+            android:text="はじめよう"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/normal_textSize" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/signup_button"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/signup_button"
+            android:layout_marginTop="@dimen/all_script_marginTop"
+            android:gravity="center"
+            android:text="クリップ機能"
+            android:textColor="@android:color/white"
+            android:textStyle="normal|bold" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/script_3_pic3_height"
+            android:layout_above="@+id/script3_description"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/script_3_marginBottom"
+            app:srcCompat="@drawable/pic3" />
 
 
     </RelativeLayout>

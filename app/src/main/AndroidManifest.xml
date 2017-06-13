@@ -14,22 +14,23 @@
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+            android:value="1856609137889644"/>
 
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="@string/twitter_api_key" />
+            android:value="d1eeeec3ff151a340b2a85306c0057dffc06a5f3" />
 
         <meta-data
             android:name="jp.line.sdk.ChannelId"
-            android:value="@string/line_channelId">
+            android:value="1510819498">
         </meta-data>
 
         <meta-data
             android:name="jp.line.sdk.AuthScheme"
             android:value="line.{{line_channelId}}">
         </meta-data>
+
 
         <activity
             android:name=".activities.MainActivity"
