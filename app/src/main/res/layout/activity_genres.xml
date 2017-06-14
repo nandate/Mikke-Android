@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_genres"
                 android:layout_gravity="center"
+                android:textColor="#ffffff"
                 android:id="@+id/genres_toolbar_title"/>
 
         </android.support.v7.widget.Toolbar>
@@ -45,7 +46,7 @@
         android:text="@string/select_genre_counter"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button"
         android:textColor="@android:color/white"
         android:layout_height="60dp"
         android:layout_weight="0"/>

@@ -1,26 +1,33 @@
 <resources>
     <string name="app_name">Mikke!</string>
-    <string name="password_hint">Password</string>
-    <string name="email_hint">Email</string>
-    <string name="sign_up_button_label">Sign Up</string>
-    <string name="signup_error_message">Please make sure you enter an email address and
-    password!</string>
-    <string name="signup_error_title">Error!</string>
-    <string name="signup_success">Account successfully created! You can now Login.</string>
-    <string name="login_error_message">Please make sure you enter an email address and password!</string>
-    <string name="login_error_title">Error!</string>
-    <string name="login_button_label">Login</string>
-    <string name="sign_up_text">Sign Up!</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="password_hint">パスワード</string>
+    <string name="email_hint">メールアドレス</string>
+    <string name="sign_up_button_label">サインアップ</string>
+    <string name="signup_error_message">入力したメールアドレスとパスワードを確認してください!</string>
+    <string name="signup_error_title">エラー!</string>
+    <string name="signup_success">登録が完了しました。ログインできます。</string>
+    <string name="login_error_message">入力したメールアドレスとパスワードを確認してください!</string>
+    <string name="login_error_title">エラー!</string>
+    <string name="login_button_label">ログイン</string>
+    <string name="sign_up_text">サインアップ</string>
+    <string name="title_activity_login">ログイン</string>
     <string name="add_item">Add New Item</string>
-    <string name="action_logout">Logout</string>
+    <string name="action_logout">ログアウト</string>
     <string name="action_reset_params_message">評価を初期化しますか？</string>
+    <string name="user_name">ニックネーム</string>
+    <string name="clip_item_text">あなたのミッケ！一覧</string>
 
 
-    <string name="title_activity_used_services">気になるサービスは？</string>
-    <string name="title_activity_genres">ジャンル選択</string>
-    <string name="select_genre_counter">Pick %1$d (or more!)</string>
+
+    <string name="title_activity_used_services">この中に気になるものはありますか？</string>
+    <string name="title_activity_genres">好きなジャンルを選んでください</string>
+    <string name="select_genre_counter">Pick %1$d (5つ以上)</string>
     <string name="select_genre_done">次へ</string>
+
+    <string name="facebook_app_id">1856609137889644</string>
+    <string name="twitter_api_key">d1eeeec3ff151a340b2a85306c0057dffc06a5f3</string>
+    <string name="twitter_key">TYxLsESiluERfpvy2wEnBhHpe</string>
+    <string name="twitter_secret">5E2rSYkJgZrUCi2biP5sdNIzyPBhFESMu0ea6GdcDExub9isZZ</string>
 
 
 </resources>

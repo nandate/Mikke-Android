@@ -14,7 +14,7 @@
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+            android:value="1856609137889644"/>
 
 
         <meta-data
@@ -30,6 +30,7 @@
             android:name="jp.line.sdk.AuthScheme"
             android:value="line.1510819498">
         </meta-data>
+
 
         <activity
             android:name=".activities.MainActivity"

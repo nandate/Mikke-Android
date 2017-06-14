@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/gradation_primal">
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -39,14 +38,11 @@
         android:layout_weight="1">
     </com.mindorks.placeholderview.SwipePlaceHolderView>
 
-    
-
-
 <Button
         android:id="@+id/next_view_button"
         android:text="結果を確認する"
         android:layout_width="@dimen/button_layout_width"
-        android:background="@drawable/gradation_border"
+        android:background="@drawable/button"
         android:textColor="@android:color/white"
         android:layout_weight="0"
         android:layout_height="@dimen/button_layout_height"
