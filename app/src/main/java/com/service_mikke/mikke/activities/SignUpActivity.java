@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -36,8 +41,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.helpers.LineLoginHelper;
+import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -46,6 +53,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by takuya on 3/17/17.
@@ -58,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity{
     protected Button signUpButton;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabase;
+
 
     private LoginButton mFacebookLoginButton;
     private CallbackManager mFacebookCallbackManager;
@@ -72,6 +85,7 @@ public class SignUpActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_sign_up);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -80,6 +94,11 @@ public class SignUpActivity extends AppCompatActivity{
         passwordEditText = (EditText)findViewById(R.id.passwordField);
         emailEditText = (EditText)findViewById(R.id.emailField);
         signUpButton = (Button)findViewById(R.id.signupButton);
+
+        setSpannableString();
+
+
+
 
 
         signUpButton.setOnClickListener(new View.OnClickListener(){
@@ -145,6 +164,7 @@ public class SignUpActivity extends AppCompatActivity{
         });
 
         mTwitterLoginButton = (TwitterLoginButton)findViewById(R.id.tw_signupButton);
+        mTwitterLoginButton.setText("Twitterではじめる");
         mTwitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -153,10 +173,10 @@ public class SignUpActivity extends AppCompatActivity{
 
             @Override
             public void failure(TwitterException exception) {
-                Log.d("tw","twitter error");
 
             }
         });
+
 
 
         mLineLoginHelper = new LineLoginHelper(this);
@@ -302,7 +322,6 @@ public class SignUpActivity extends AppCompatActivity{
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }else{
-                            Log.e("line","error");
                         }
                     }
                 });
@@ -314,5 +333,44 @@ public class SignUpActivity extends AppCompatActivity{
         mFacebookCallbackManager.onActivityResult(requestCode,resultCode,data);
     }
 
+
+    private void setSpannableString(){
+        String msg = "登録ボタンを押すことにより、利用規約に同意したことになります。";
+
+        Map<String,String> map = new HashMap<>();
+        map.put("利用規約","http://service-mikke.com/terms/");
+
+        SpannableString ss = createSpannableString(msg,map);
+        TextView textView = (TextView)findViewById(R.id.textView3);
+        textView.setText(ss);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private SpannableString createSpannableString(String msg,Map<String,String> map){
+        SpannableString ss = new SpannableString(msg);
+
+        for(final Map.Entry<String,String> entry : map.entrySet()){
+            int start = 0;
+            int end = 0;
+
+            Pattern pattern = Pattern.compile(entry.getKey());
+            Matcher matcher = pattern.matcher(msg);
+            while (matcher.find()){
+                start = matcher.start();
+                end = matcher.start();
+                break;
+            }
+            ss.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    String url = entry.getValue();
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+            },start,end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        }
+        return ss;
+    }
 
 }

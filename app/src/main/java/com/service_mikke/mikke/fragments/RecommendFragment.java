@@ -23,6 +23,7 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
+import com.mindorks.placeholderview.SwipeViewBuilder;
 import com.mindorks.placeholderview.listeners.ItemRemovedListener;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.models.Service;
@@ -44,6 +45,8 @@ public class RecommendFragment extends Fragment{
     private Button like_button;
     private Button dislike_button;
 
+    private SoonFragment soonFragment;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -63,50 +66,53 @@ public class RecommendFragment extends Fragment{
                 .setDisplayViewCount(1)
                 .setSwipeDecor(new SwipeDecor()
                         .setPaddingTop(10)
-                        .setRelativeScale(0.01f));
+                        .setRelativeScale(0.01f)
+                        .setSwipeInMsgLayoutId(R.layout.swipe_in_msg_view)
+                        .setSwipeOutMsgLayoutId(R.layout.swipe_out_msg_view));
 
         mSwipeView.getScrollBarSize();
+
         mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
             @Override
             public void onItemRemoved(int count) {
                 if(count == 0){
-                    recommend_ref.removeValue();
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.recommend_fragment,new SoonFragment());
+                    ft.commit();
                 }
             }
         });
 
 
 
-        try{
+        recommend_ref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Service recommend = dataSnapshot.getValue(Service.class);
+                mSwipeView.addView(new ServiceTinderCard(mContext,recommend,mSwipeView));
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            recommend_ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.getValue() == null){
-                        FragmentManager fm = getFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        ft.replace(R.id.recommend_fragment,new SoonFragment());
-                        ft.commit();
-                    }
-                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                        Service recommend = snapshot.getValue(Service.class);
-                        mSwipeView.addView(new ServiceTinderCard(mContext,recommend,mSwipeView));
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    System.out.println(databaseError);
+            }
 
-                }
-            });
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
+            }
 
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         like_button = (Button)v.findViewById(R.id.like_button);
         like_button.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +130,9 @@ public class RecommendFragment extends Fragment{
                 mSwipeView.doSwipe(true);
             }
         });
+
+
+
         return v;
     }
 

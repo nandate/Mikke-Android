@@ -50,6 +50,7 @@
         android:textColor="@android:color/white" />
 
     <com.facebook.login.widget.LoginButton
+        xmlns:fb="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fb_signupButton"
         android:layout_width="@dimen/button_layout_width"
         android:layout_height="@dimen/button_layout_height"
@@ -59,7 +60,8 @@
         android:layout_alignStart="@+id/signupButton"
         android:layout_alignRight="@+id/signupButton"
         android:layout_alignEnd="@+id/signupButton"
-        android:textSize="@dimen/normal_textSize" />
+        android:textSize="@dimen/normal_textSize"
+        fb:com_facebook_login_text="Facebookではじめる"/>
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
         android:id="@+id/tw_signupButton"
@@ -71,12 +73,11 @@
         android:layout_alignStart="@+id/fb_signupButton"
         android:layout_alignRight="@+id/fb_signupButton"
         android:layout_alignEnd="@+id/fb_signupButton"
-        android:textSize="@dimen/normal_textSize"/>
-
+        android:textSize="@dimen/normal_textSize" />
 
     <Button
         android:id="@+id/line_signupButton"
-        android:text="Log in with LINE"
+        android:text="LINEではじめる"
         android:textColor="@android:color/white"
         android:background="@color/colorLINE"
         android:layout_width="@dimen/button_layout_width"
@@ -90,12 +91,12 @@
 
 
     <TextView
-        android:text="登録ボタンを押すことにより、利用規約に同意したことになります。"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/signUp_textView_marginTop"
         android:id="@+id/textView3"
         android:textColor="@android:color/white"
+        android:textColorLink="@android:color/holo_purple"
         android:layout_below="@+id/line_signupButton"
         android:layout_alignLeft="@+id/line_signupButton"
         android:layout_alignStart="@+id/line_signupButton"

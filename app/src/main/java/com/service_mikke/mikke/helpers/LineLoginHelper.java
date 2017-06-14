@@ -1,6 +1,7 @@
 package com.service_mikke.mikke.helpers;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -39,11 +40,12 @@ public class LineLoginHelper {
     private static final String TAG = LineLoginHelper.class.getSimpleName();
 
     private Activity mActivity;
+    private ProgressDialog progressDialog;
 
     public LineLoginHelper(Activity activity){
         mActivity = activity;
         mLineAccesscodeVerificationEndpoint =
-                "https://nameless-inlet-90700.herokuapp.com/verifyToken";
+                "http://52.197.208.162:8080/verifyToken";
     }
 
     public Task<AuthResult> startLineLogin(){
@@ -78,7 +80,6 @@ public class LineLoginHelper {
                 switch (lineLoginFuture.getProgress()){
                     case SUCCESS:
                         String lineAccessToken = lineLoginFuture.getAccessToken().accessToken;
-                        Log.d(TAG,"LINE Access token =" + lineAccessToken);
                         source.setResult(lineAccessToken);
                         break;
 
@@ -114,8 +115,9 @@ public class LineLoginHelper {
             public void onResponse(JSONObject response){
                 try{
                     String firebaseToken = response.getString("firebase_token");
-                    Log.d(TAG,"Firebase Token :" + firebaseToken);
                     source.setResult(firebaseToken);
+                    progressDialog.dismiss();
+
                 }catch (Exception e){
                     source.setException(e);
                 }
@@ -125,8 +127,8 @@ public class LineLoginHelper {
         Response.ErrorListener errorListener = new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
-                Log.e(TAG,error.toString());
                 source.setException(error);
+                progressDialog.dismiss();
             }
         };
 
@@ -137,6 +139,11 @@ public class LineLoginHelper {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity);
         requestQueue.add(TokenRequest);
+
+        progressDialog = new ProgressDialog(mActivity);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
         return source.getTask();
     }
 

@@ -1,8 +1,10 @@
 package com.service_mikke.mikke.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import com.google.firebase.storage.StorageReference;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.activities.FullServicesActivity;
 import com.service_mikke.mikke.models.Service;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,7 @@ import java.util.List;
 public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecyclerAdapter.ViewHolder>{
 
     private List<Service> mDataset = new ArrayList<>();
+    private Context context;
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference storageReference = storage.getReferenceFromUrl("gs://mikke-d5d0a.appspot.com/");
@@ -47,7 +51,8 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
         }
     }
 
-    public FavoriteRecyclerAdapter(DatabaseReference ref){
+    public FavoriteRecyclerAdapter(DatabaseReference ref, Context context){
+        this.context = context;
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -105,11 +110,10 @@ public class FavoriteRecyclerAdapter extends RecyclerView.Adapter<FavoriteRecycl
     public void onBindViewHolder(final ViewHolder holder, int position){
         holder.name.setText(mDataset.get(position).getName());
         StorageReference logo_ref = storageReference.child(mDataset.get(position).getName()+"_logo.png");
-        logo_ref.getBytes(1024*1024).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        logo_ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap logo = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                holder.logo.setImageBitmap(logo);
+            public void onSuccess(Uri uri) {
+                Picasso.with(context).load(uri.toString()).into(holder.logo);
             }
         });
         holder.logo.setOnClickListener(new FavClick(mDataset.get(position)));

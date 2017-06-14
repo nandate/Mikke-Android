@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.service_mikke.mikke.R;
 
 /**
@@ -50,9 +53,40 @@ public class UserSettingActivity extends AppCompatActivity{
 
         prefectures_spinner = (Spinner)findViewById(R.id.spinner2);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,prefectures);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,prefectures);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         prefectures_spinner.setAdapter(adapter);
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user_name_textView.setText(dataSnapshot.child("user_name").getValue().toString());
+                if(dataSnapshot.child("user_birthday").exists()){
+                    user_birth_textView.setText(dataSnapshot.child("user_birthday").getValue().toString());
+                }
+
+                if(dataSnapshot.child("user_sex").exists()){
+                    String gender = dataSnapshot.child("user_sex").getValue().toString();
+                    if(gender.equals("男性")){
+                        user_sex_radioGroup.check(R.id.radio_male);
+
+                    }else if(gender.equals("女性")){
+                        user_sex_radioGroup.check(R.id.radio_female);
+                    }
+                }
+
+                if(dataSnapshot.child("user_prefectures").exists()){
+                    String prefecture = dataSnapshot.child("user_prefectures").getValue().toString();
+                    int position = adapter.getPosition(prefecture);
+                    prefectures_spinner.setSelection(position);
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
         submitButton = (Button)findViewById(R.id.button5);

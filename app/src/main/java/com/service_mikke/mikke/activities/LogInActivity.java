@@ -77,6 +77,7 @@ public class LogInActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_log_in);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -88,7 +89,6 @@ public class LogInActivity  extends AppCompatActivity {
 
 
         //Facebook
-        FacebookSdk.sdkInitialize(getApplicationContext());
         mFacebookCallbackManager = CallbackManager.Factory.create();
         mFacebookLoginButton = (LoginButton)findViewById(R.id.fb_loginButton);
         mFacebookLoginButton.setReadPermissions("email","public_profile");
@@ -113,6 +113,7 @@ public class LogInActivity  extends AppCompatActivity {
         //Twitter
 
         mTwitterLoginButton = (TwitterLoginButton)findViewById(R.id.tw_loginButton);
+        mTwitterLoginButton.setText("Twitterでログイン");
         mTwitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -121,7 +122,6 @@ public class LogInActivity  extends AppCompatActivity {
 
             @Override
             public void failure(TwitterException exception) {
-                Log.d("tw","twitter error");
 
             }
         });
@@ -260,7 +260,6 @@ public class LogInActivity  extends AppCompatActivity {
                             startActivity(intent);
 
                         }else{
-                            Log.e("line","error");
                         }
                     }
                 });

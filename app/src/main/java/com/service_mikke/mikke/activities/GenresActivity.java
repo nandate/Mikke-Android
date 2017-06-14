@@ -112,7 +112,7 @@ public class GenresActivity extends AppCompatActivity implements Observer{
 
     private void updateCounterButton(int amount){
         if (amount < 5){
-            next_view_button.setText(String.format(" %1$d個 選択中(or more !)" , amount));
+            next_view_button.setText(String.format(" %1$d個 選択中(５個以上)" , amount));
             next_view_button.setClickable(false);
         }else{
             next_view_button.setText(String.format("　これにする　(%1$d個選択中)", amount));

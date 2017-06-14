@@ -19,16 +19,16 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="@string/twitter_api_key" />
+            android:value="d1eeeec3ff151a340b2a85306c0057dffc06a5f3" />
 
         <meta-data
             android:name="jp.line.sdk.ChannelId"
-            android:value="@string/line_channelId">
+            android:value="1510819498">
         </meta-data>
 
         <meta-data
             android:name="jp.line.sdk.AuthScheme"
-            android:value="line.{{line_channelId}}">
+            android:value="line.1510819498">
         </meta-data>
 
         <activity
@@ -70,8 +70,10 @@
         <activity
             android:name=".activities.MessageDetailActivity">
         </activity>
+
         <activity
-            android:name=".activities.UserSettingActivity">
+            android:name=".activities.UserSettingActivity"
+            android:label="プロフィール設定">
         </activity>
 
         <activity
@@ -88,7 +90,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="line.{{line_channelId}}"/>
+                <data android:scheme="line.1510819498"/>
             </intent-filter>
         </activity>
         <activity

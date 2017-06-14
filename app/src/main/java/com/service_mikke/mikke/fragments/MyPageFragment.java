@@ -87,7 +87,7 @@ public class MyPageFragment extends Fragment{
 
         favorite_recycler_view = (RecyclerView)v.findViewById(R.id.favorite_recyclerView);
 
-        FavoriteRecyclerAdapter mAdapter = new FavoriteRecyclerAdapter(mDatabase.child("fav"));
+        FavoriteRecyclerAdapter mAdapter = new FavoriteRecyclerAdapter(mDatabase.child("fav"),getContext());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
 

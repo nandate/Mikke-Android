@@ -50,7 +50,8 @@
         android:textColor="@android:color/white"
         android:layout_weight="0"
         android:layout_height="@dimen/button_layout_height"
+        android:visibility="invisible"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/script_start_button_marginBottom"/>
+        android:layout_marginBottom="@dimen/script_start_button_marginBottom" />
 
 </android.support.v7.widget.LinearLayoutCompat>

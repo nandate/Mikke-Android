@@ -1,8 +1,11 @@
 package com.service_mikke.mikke.activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,7 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.annotations.LongClick;
+import com.mindorks.placeholderview.listeners.ItemRemovedListener;
 import com.service_mikke.mikke.R;
+import com.service_mikke.mikke.fragments.SoonFragment;
 import com.service_mikke.mikke.models.Genre;
 import com.service_mikke.mikke.models.Service;
 import com.service_mikke.mikke.models.ServiceTinderCard;
@@ -49,10 +54,11 @@ public class UsedServicesActivity extends AppCompatActivity {
     private Context mContext;
     private Button next_view_button;
 
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
     private String mUserId;
+
+
+    private ProgressDialog progressDialog;
 
     private List<Service> services = new ArrayList<>();
 
@@ -69,9 +75,7 @@ public class UsedServicesActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mUserId =mFirebaseUser.getUid();
+        mUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         User.getInstance().getUsed_services();
 
@@ -89,7 +93,19 @@ public class UsedServicesActivity extends AppCompatActivity {
                 .setDisplayViewCount(3)
                 .setSwipeDecor(new SwipeDecor()
                         .setPaddingTop(20)
-                        .setRelativeScale(0.01f));
+                        .setRelativeScale(0.01f)
+                        .setSwipeInMsgLayoutId(R.layout.swipe_in_msg_view)
+                        .setSwipeOutMsgLayoutId(R.layout.swipe_out_msg_view));
+
+
+        mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
+            @Override
+            public void onItemRemoved(int count) {
+                if (count == 0) {
+                    next_view_button.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         try{
             final List<String> service_names = new ArrayList<>();
@@ -145,15 +161,15 @@ public class UsedServicesActivity extends AppCompatActivity {
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
-                        Log.d("Response",response);
                         Intent intent = new Intent(UsedServicesActivity.this,MainActivity.class);
+                        progressDialog.dismiss();
                         startActivity(intent);
                     }
                 },
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
-                        Log.d("Error Response",error.toString());
+                        progressDialog.dismiss();
                     }
                 }){
             @Override
@@ -166,6 +182,13 @@ public class UsedServicesActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+
     }
 
 

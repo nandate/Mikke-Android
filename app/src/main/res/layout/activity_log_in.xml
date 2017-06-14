@@ -88,6 +88,7 @@
     </EditText>
 
     <com.facebook.login.widget.LoginButton
+        xmlns:fb="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fb_loginButton"
         android:layout_width="@dimen/button_layout_width"
         android:layout_height="@dimen/button_layout_height"
@@ -97,7 +98,8 @@
         android:layout_alignStart="@+id/loginButton"
         android:layout_alignRight="@+id/loginButton"
         android:layout_alignEnd="@+id/loginButton"
-        android:textSize="@dimen/normal_textSize" />
+        android:textSize="@dimen/normal_textSize"
+        fb:com_facebook_login_text="Facebookでログイン"/>
 
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
@@ -109,11 +111,11 @@
         android:layout_alignLeft="@+id/fb_loginButton"
         android:layout_alignStart="@+id/fb_loginButton"
         android:layout_alignRight="@+id/fb_loginButton"
-        android:layout_alignEnd="@+id/fb_loginButton"/>
+        android:layout_alignEnd="@+id/fb_loginButton" />
 
     <Button
         android:id="@+id/line_loginButton"
-        android:text="Log in with LINE"
+        android:text="LINEでログイン"
         android:textColor="@android:color/white"
         android:background="@color/colorLINE"
         android:layout_width="@dimen/button_layout_width"

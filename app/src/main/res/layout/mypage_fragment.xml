@@ -61,7 +61,6 @@
                     android:text="あなたのミッケ！"
                     android:textSize="@dimen/normal_textSize"
                     android:textColor="#757575"
-                    android:layout_below="@+id/user_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/mypage_textView_marginTop"
                     android:layout_marginBottom="@dimen/mypage_textView_marginBottom"/>

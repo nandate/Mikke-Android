@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout)findViewById(R.id.tab_layout);
         viewPager = (ViewPager)findViewById(R.id.view_pager);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -62,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
             loadLogInView();
         }else {
 
-
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setText("おすすめ").setIcon(R.drawable.ic_send_black_24dp));
+            tabLayout.addTab(tabLayout.newTab().setText("マッチング").setIcon(R.drawable.ic_send_black_24dp));
             tabLayout.addTab(tabLayout.newTab().setText("お知らせ").setIcon(R.drawable.ic_announcement_black_24dp));
             tabLayout.addTab(tabLayout.newTab().setText("マイページ").setIcon(R.drawable.ic_person_black_24dp));
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -77,7 +76,22 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
-                    viewPager.setCurrentItem(tab.getPosition());
+                    switch (tab.getPosition()){
+                        case 0:
+                            viewPager.setCurrentItem(0);
+                            toolbar.setTitle("マッチング");
+                            break;
+
+                        case 1:
+                            viewPager.setCurrentItem(1);
+                            toolbar.setTitle("お知らせ");
+                            break;
+
+                        case 2:
+                            viewPager.setCurrentItem(2);
+                            toolbar.setTitle("マイページ");
+                            break;
+                    }
                 }
 
                 @Override
