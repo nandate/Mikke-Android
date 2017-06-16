@@ -31,7 +31,7 @@
         android:id="@+id/loginButton"
         android:layout_width="@dimen/button_layout_width"
         android:layout_height="@dimen/button_layout_height"
-        android:background="@drawable/bg_white"
+        android:background="@drawable/button_white"
         android:layout_marginTop="@dimen/login_button_marginTop"
         android:layout_alignLeft="@+id/passwordField"
         android:layout_below="@+id/passwordField"

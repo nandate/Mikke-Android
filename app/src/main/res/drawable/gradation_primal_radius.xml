@@ -5,9 +5,10 @@
         android:right="2dp"
         android:bottom="2dp" />
     <corners android:radius="5dp" />
+    <item android:state_pressed="true"/>
     <gradient
         android:angle="135"
-        android:startColor="#00ACC1"
-        android:endColor="#C0CA33"
+        android:startColor="#00BCD4"
+        android:endColor="#AED581"
         />
 </shape>

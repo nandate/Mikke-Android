@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <TextView
         android:text="ユーザー名"
@@ -54,19 +55,24 @@
         android:layout_width="@dimen/button_layout_width"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        >
 
-        <RadioButton android:id="@+id/radio_male"
+        <RadioButton
+            android:id="@+id/radio_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="男性">
+
         </RadioButton>
 
-        <RadioButton android:id="@+id/radio_female"
+        <RadioButton
+            android:id="@+id/radio_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/profile_edit_gender_marginLeft"
             android:text="女性">
+
         </RadioButton>
     </RadioGroup>
 
@@ -90,7 +96,7 @@
         android:layout_height="@dimen/button_layout_height"
         android:id="@+id/button5"
         android:layout_gravity="center"
-        android:background="@drawable/gradation_primal_radius"
+        android:background="@drawable/button"
         android:textColor="@android:color/white"
         android:layout_marginTop="@dimen/profile_edit_button_marginTop"/>
 
