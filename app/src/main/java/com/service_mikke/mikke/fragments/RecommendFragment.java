@@ -72,19 +72,6 @@ public class RecommendFragment extends Fragment{
 
         mSwipeView.getScrollBarSize();
 
-        mSwipeView.addItemRemoveListener(new ItemRemovedListener() {
-            @Override
-            public void onItemRemoved(int count) {
-                if(count == 0){
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.recommend_fragment,new SoonFragment());
-                    ft.commit();
-                }
-            }
-        });
-
-
 
         recommend_ref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -114,6 +101,29 @@ public class RecommendFragment extends Fragment{
             }
         });
 
+        recommend_ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue() == null){
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    soonFragment = new SoonFragment();
+                    ft.replace(R.id.recommend_fragment,soonFragment);
+                    ft.commit();
+                }else{
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.remove(soonFragment);
+                    ft.commit();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         like_button = (Button)v.findViewById(R.id.like_button);
         like_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,8 +140,6 @@ public class RecommendFragment extends Fragment{
                 mSwipeView.doSwipe(true);
             }
         });
-
-
 
         return v;
     }

@@ -50,10 +50,31 @@ public class NoticeFragment extends Fragment{
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mDatabase.child("messages").orderByChild("created_at").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        mAdapter = new NoticeRecyclerAdapter(mDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mDatabase.child("messages").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                getAllMessage(dataSnapshot);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                mDataset.add(dataSnapshot.getValue(Message.class));
+                Collections.reverse(mDataset);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -74,6 +95,7 @@ public class NoticeFragment extends Fragment{
             message.setPhotoUrl((String)snapshot.child("photoUrl").getValue());
             mDataset.add(message);
         }
+
         Collections.reverse(mDataset);
         mAdapter = new NoticeRecyclerAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);

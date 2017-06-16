@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             LoginManager.getInstance().logOut();
 
             //twitter logout
-            Twitter.logOut();
+            FirebaseAuth.getInstance().signOut();
 
             LineSdkContextManager.getSdkContext().getAuthManager().logout();
             loadLogInView();

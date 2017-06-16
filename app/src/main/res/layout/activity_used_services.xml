@@ -42,7 +42,7 @@
         android:id="@+id/next_view_button"
         android:text="結果を確認する"
         android:layout_width="@dimen/button_layout_width"
-        android:background="#00BCD4"
+        android:background="@drawable/button"
         android:textColor="@android:color/white"
         android:layout_weight="0"
         android:layout_height="@dimen/button_layout_height"

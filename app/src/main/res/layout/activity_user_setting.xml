@@ -62,7 +62,8 @@
             android:id="@+id/radio_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="男性">
+            android:text="男性"
+            android:checked="true">
 
         </RadioButton>
 
