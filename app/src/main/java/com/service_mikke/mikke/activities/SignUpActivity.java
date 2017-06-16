@@ -21,8 +21,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,23 +39,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.service_mikke.mikke.R;
 import com.service_mikke.mikke.helpers.LineLoginHelper;
-import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by takuya on 3/17/17.
@@ -96,10 +87,6 @@ public class SignUpActivity extends AppCompatActivity{
         signUpButton = (Button)findViewById(R.id.signupButton);
 
         setSpannableString();
-
-
-
-
 
         signUpButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -284,6 +271,7 @@ public class SignUpActivity extends AppCompatActivity{
         AuthCredential credential = TwitterAuthProvider.getCredential(
                 session.getAuthToken().token,
                 session.getAuthToken().secret);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -296,7 +284,6 @@ public class SignUpActivity extends AppCompatActivity{
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }else{
-
                             AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                             builder.setMessage(task.getException().getMessage())
                                     .setTitle(R.string.login_error_title)
@@ -331,6 +318,7 @@ public class SignUpActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         mFacebookCallbackManager.onActivityResult(requestCode,resultCode,data);
+        mTwitterLoginButton.onActivityResult(requestCode,resultCode,data);
     }
 
 
@@ -341,6 +329,7 @@ public class SignUpActivity extends AppCompatActivity{
         map.put("利用規約","http://service-mikke.com/terms/");
 
         SpannableString ss = createSpannableString(msg,map);
+
         TextView textView = (TextView)findViewById(R.id.textView3);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -357,15 +346,15 @@ public class SignUpActivity extends AppCompatActivity{
             Matcher matcher = pattern.matcher(msg);
             while (matcher.find()){
                 start = matcher.start();
-                end = matcher.start();
+                end = matcher.end();
                 break;
             }
             ss.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
                     String url = entry.getValue();
-                    Uri uri = Uri.parse(url);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    Intent intent = new Intent(SignUpActivity.this,WebViewActivity.class);
+                    intent.putExtra("link",url);
                     startActivity(intent);
                 }
             },start,end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);

@@ -11,14 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -26,16 +19,13 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.ActionCodeResult;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.TwitterAuthProvider;
-import com.google.gson.JsonObject;
 import com.service_mikke.mikke.R;
 
-import com.facebook.FacebookSdk;
 import com.service_mikke.mikke.helpers.LineLoginHelper;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -223,6 +213,7 @@ public class LogInActivity  extends AppCompatActivity {
         AuthCredential credential = TwitterAuthProvider.getCredential(
                 session.getAuthToken().token,
                 session.getAuthToken().secret);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -268,7 +259,7 @@ public class LogInActivity  extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        mTwitterLoginButton.onActivityResult(requestCode,resultCode,data);
         mFacebookCallbackManager.onActivityResult(requestCode,resultCode,data);
+        mTwitterLoginButton.onActivityResult(requestCode,resultCode,data);
     }
 }

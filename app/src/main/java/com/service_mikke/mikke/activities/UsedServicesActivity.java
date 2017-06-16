@@ -188,7 +188,6 @@ public class UsedServicesActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-
     }
 
 
