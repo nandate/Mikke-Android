@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.service_mikke.mikke">
+    package="com.service_mikke.mikke_android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -45,41 +45,49 @@
 
         <activity
             android:name=".activities.StartActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".activities.GenresActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
             android:label="">
         </activity>
 
         <activity
             android:name=".activities.UsedServicesActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
             android:label="">
         </activity>
 
         <activity
-            android:name=".activities.FullServicesActivity">
+            android:name=".activities.FullServicesActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
-            android:name=".activities.WebViewActivity">
+            android:name=".activities.WebViewActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
-            android:name=".activities.MessageDetailActivity">
+            android:name=".activities.MessageDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".activities.UserSettingActivity"
-            android:label="プロフィール設定">
+            android:label="プロフィール設定"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".activities.LogInActivity"
-            android:label="ログイン">
+            android:label="ログイン"
+            android:screenOrientation="portrait">
         </activity>
 
 

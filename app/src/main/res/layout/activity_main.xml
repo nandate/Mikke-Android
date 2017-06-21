@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.service_mikke.mikke.activities.MainActivity">
+    tools:context="com.service_mikke.mikke_android.activities.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_alignParentBottom="true"
         app:tabTextAppearance="@style/TabText"/>
 
-    <com.service_mikke.mikke.adapters.NonSwipeableViewPager
+    <com.service_mikke.mikke_android.adapters.NonSwipeableViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
